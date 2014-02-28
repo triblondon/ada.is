@@ -4,4 +4,4 @@ node_module
 app/bower_components
 test/bower_components
 _site
-
+node_modules

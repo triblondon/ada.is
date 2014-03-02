@@ -253,11 +253,11 @@ module.exports = function (grunt) {
             'images/**/*',
             'fonts/**/*',
             // Like Jekyll, exclude files & folders prefixed with an underscore.
-            '!**/_*{,/**}',
+            '!**/_*{,/**}'
             // Explicitly add any files your site needs for distribution here.
-            '_bower_components/jquery/jquery.js',
-            'favicon.ico',
-            'apple-touch*.png'
+            //'_bower_components/jquery/jquery.js',
+            //'favicon.ico',
+            //'apple-touch*.png'
           ],
           dest: '<%= yeoman.dist %>'
         }]
@@ -286,6 +286,16 @@ module.exports = function (grunt) {
             '<%= yeoman.dist %>/fonts/**/*.{eot*,otf,svg,ttf,woff}'
           ]
         }]
+      }
+    },
+    buildcontrol: {
+      dist: {
+        options: {
+          remote: 'git@github.com:AdaRoseEdwards/adaroseedwards.github.io.git',
+          branch: 'master',
+          commit: true,
+          push: true
+        }
       }
     },
     jshint: {
@@ -373,6 +383,13 @@ module.exports = function (grunt) {
     'filerev',
     'usemin',
     'htmlmin'
+    ]);
+
+  grunt.registerTask('deploy', [
+    'check',
+    'test',
+    'build',
+    'buildcontrol'
     ]);
 
   grunt.registerTask('default', [

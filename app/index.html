@@ -1,10 +1,12 @@
 ---
 layout: default
-title: Your New Jekyll Site
+title: Ada Rose Edwards
+giturl: https://github.com/AdaRoseEdwards
+pageurl: https://ada.is
 ---
 
 <section class="home posts">
-  <h1>Blog Posts</h1>
+  <h4>Blog Posts</h4>
   {% for post in site.posts %}
     <article><time>{{ post.date | date_to_string }}</time> &raquo; <a href="{{ post.url }}">{{ post.title }}</a></article>
   {% endfor %}

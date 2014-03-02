@@ -3,5 +3,6 @@ node_module
 .sass-cache
 app/bower_components
 test/bower_components
-_site
 node_modules
+_site
+

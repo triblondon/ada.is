@@ -103,6 +103,10 @@ html, body {
    width:100%;   
 }
 
+body {
+    margin: 3em;
+}
+
 @keyframes myfirst
 {
     0% {
@@ -128,7 +132,7 @@ html, body {
 }
 
 .headerBox {
-    position: relative;
+    position: absolute;
     top: -3em;
     -webkit-transform: rotate(-3deg);
     transform: rotate(-3deg);

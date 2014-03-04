@@ -134,6 +134,8 @@ html, body {
     transform: rotate(-3deg);
     background: red;
     height: 7em;
+    width:110%;
+    left: -5%;
 }
 
 .headerBox > h1 {
@@ -149,6 +151,8 @@ html, body {
     -webkit-transform: translate(0,0);
     transform: translate(0,0);
     opacity: 1;
+    margin-bottom: -0.37em;
+    color: white;
 }
 
 

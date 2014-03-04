@@ -114,12 +114,12 @@ body {
         transform: translate(-50%,0);
         opacity: 0;
     }
-    40% {
+    20% {
         -webkit-transform: translate(0,0);
         transform: translate(0,0);
         opacity: 1;
     }
-    60% {
+    80% {
         -webkit-transform: translate(0,0);
         transform: translate(0,0);
         opacity: 1;
@@ -152,7 +152,7 @@ body {
     transform: translate(50%,0);
     font-family: sans;
     text-align: center;
-    animation: myfirst 4s ease 2s infinite normal;
+    animation: myfirst 12s ease 2s infinite normal;
     position: absolute;
     bottom: 0;
     -webkit-transform: translate(0,0);

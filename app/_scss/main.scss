@@ -100,14 +100,14 @@ textarea {
 
 html, body {
    overflow: hidden;
-   width:100%;   
+   width:100%;
 }
 
 body {
     margin: 5em 3em 0 3em;
 }
 
-@keyframes myfirst
+@keyframes swipex
 {
     0% {
         -webkit-transform: translate(-50%,0);
@@ -152,7 +152,6 @@ body {
     transform: translate(50%,0);
     font-family: sans;
     text-align: center;
-    animation: myfirst 12s ease 2s infinite normal;
     position: absolute;
     bottom: 0;
     -webkit-transform: translate(0,0);
@@ -161,6 +160,10 @@ body {
     margin-bottom: -0.38em;
     color: white;
     white-space: nowrap;
+}
+
+.headerBox.anim {
+    animation: swipex 12s ease 2s infinite normal;
 }
 
 

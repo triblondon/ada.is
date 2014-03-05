@@ -10,23 +10,32 @@
     <!-- Place favicon.ico and apple-touch-icon(s) in the root directory -->
 
     <!-- build:css({app,.tmp}) /css/main.css -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
     <link rel="stylesheet" href="/_bower_components/normalize-css/normalize.css">
     <link rel="stylesheet" href="/css/syntax.css">
     <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/ada.css">
+    <link rel="stylesheet" href="/css/helpers.css">
     <!-- endbuild -->
     <!-- endbuild -->
 
   </head>
   <body>
-
-  <div class="headerBox"><h1>{{ page.title }}</h1></div>
-    <!--[if lt IE 8]>
-        <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-    <![endif]-->
-
-    {{ content }}
-
+    <div class="container">
+      <div class="row">
+        <div class="contentContainer col-xs-10  col-xs-offset-1 col-sm-8 col-sm-offset-1 col-md-7 col-md-offset-2 col-lg-6 col-lg-offset-2">
+          <div class="headerBox">
+            <h1 class="pageTitle">{{ page.title }}</h1>
+          </div>
+          <!--[if lt IE 8]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+          <![endif]-->
+          <div class="content">
+            {{ content }}
+          </div>
+        </div>
+      </div>
+    </div>
     {% include scripts.html %}
-
   </body>
 </html>

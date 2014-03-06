@@ -295,7 +295,6 @@ module.exports = function (grunt) {
           branch: 'master',
           commit: true,
           push: true,
-          force: true
         }
       }
     },

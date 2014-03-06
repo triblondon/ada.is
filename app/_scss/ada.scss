@@ -18,13 +18,13 @@ body {
 }
 
 .content {
+    position: absolute;
+    top: 5em;
+    left: 0;
     background: white;
     overflow-y: auto;
     overflow-x: hidden;
     width: 100%;
-    position: absolute;
-    top: 5em;
-    left: 0;
     padding: 0 3em 0 3em;
     height:100%;
     height:calc(100% - 5em);

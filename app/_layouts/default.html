@@ -27,7 +27,7 @@
       <div class="row">
         <div class="contentContainer col-xs-12 col-sm-9 col-sm-offset-1 col-md-7 col-md-offset-2 col-lg-6 col-lg-offset-2">
           <div class="headerBox">
-            <h1 class="pageTitle">{{ page.title }}</h1>
+            <h1 class="pageTitle"><a href="{{ page.url }}">{{ page.title }}</a></h1>
           </div>
           <!--[if lt IE 8]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
@@ -45,6 +45,7 @@
     <script type="text/javascript">
       /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
       var disqus_shortname = 'adaroseedwards'; // required: replace example with your forum shortname
+      var disqus_identifier = ("{{ page.title }}").replace(/[^a-zA-Z0-9]/g,'_');
 
       /* * * DON'T EDIT BELOW THIS LINE * * */
       (function() {

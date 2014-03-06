@@ -294,7 +294,8 @@ module.exports = function (grunt) {
           remote: 'git@github.com:AdaRoseEdwards/adaroseedwards.github.io.git',
           branch: 'master',
           commit: true,
-          push: true
+          push: true,
+          force: true
         }
       }
     },

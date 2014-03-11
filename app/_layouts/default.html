@@ -23,6 +23,17 @@
 
   </head>
   <body>
+  </body>
+    <div class="hexes1">
+      <div id="bg-hex1" class="hexagon"><div class="hexagon-in1"><div class="hexagon-in2"><div class="hexagon-background"></div></div></div></div>
+      <div id="bg-hex2" class="hexagon"><div class="hexagon-in1"><div class="hexagon-in2"><div class="hexagon-background"></div></div></div></div>
+      <div id="bg-hex3" class="hexagon"><div class="hexagon-in1"><div class="hexagon-in2"><div class="hexagon-background"></div></div></div></div>
+    </div>
+    <div class="hexes2">
+      <div id="bg-hex4" class="hexagon"><div class="hexagon-in1"><div class="hexagon-in2"><div class="hexagon-background"></div></div></div></div>
+      <div id="bg-hex5" class="hexagon"><div class="hexagon-in1"><div class="hexagon-in2"><div class="hexagon-background"></div></div></div></div>
+      <div id="bg-hex6" class="hexagon"><div class="hexagon-in1"><div class="hexagon-in2"><div class="hexagon-background"></div></div></div></div>
+    </div>
     <div class="container">
       <div class="row">
         <div class="content-container col-xs-12 col-sm-9 col-sm-offset-1 col-md-7 col-md-offset-2 col-lg-6 col-lg-offset-2">
@@ -48,7 +59,13 @@
       /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
       var disqus_shortname = 'adaroseedwards'; // required: replace example with your forum shortname
       var disqus_identifier = ("{{ page.title }}").replace(/[^a-zA-Z0-9]/g,'_');
-
+      function disqus_config() {
+          this.callbacks.afterRender.push(function() {
+            console.log("boot");
+            alert('boo');
+            debugger;
+          });
+      }
       /* * * DON'T EDIT BELOW THIS LINE * * */
       (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

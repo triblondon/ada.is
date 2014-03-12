@@ -383,6 +383,7 @@ module.exports = function (grunt) {
 		'jekyll:dist',
 		'concurrent:dist',
 		'useminPrepare',
+		'autoprefixer:server',
 		'concat',
 		'autoprefixer:dist',
 		'cssmin',
@@ -392,14 +393,14 @@ module.exports = function (grunt) {
 		'filerev',
 		'usemin',
 		'htmlmin'
-		]);
+	]);
 
 	grunt.registerTask('deploy', [
 		'check',
 		'test',
 		'build',
 		'buildcontrol'
-		]);
+	]);
 
 	grunt.registerTask('default', [
 		'check',

@@ -1,8 +1,18 @@
+@import "helpers";
+
 $background: #00A6D6;
 $foreground: #ffffff;
+$dark-background: darken($foreground, 90%);
 
-html, body, .container, .row, .content-container {
-	min-height: 100%;
+
+
+html, body, .container, .row {
+	margin-left: 0;
+	margin-right: 0;
+	padding-left: 0;
+	padding-right: 0;
+	height: 100%;
+	width: 100%;
 }
 
 body {
@@ -11,178 +21,56 @@ body {
 	background-size: cover;
 }
 
+.row {
+	$leftBoxWidth: 200px;
+	$rightBoxWidth: 300px;
+	&.left {
+		transform: translate($leftBoxWidth, 0px);
+	}
+
+	&.right {
+		transform: translate(-$rightBoxWidth, 0px);
+	}
+	transition: transform 500ms cubic-bezier(0.020, 0.665, 0.460, 1.145);
+
+	.left-box {
+		width: $leftBoxWidth;
+		position: absolute;
+		left: -$leftBoxWidth;
+		height: 100%;
+		background: $dark-background;
+		color: $background;
+		padding: 1em;
+	}
+
+	.right-box {
+		width: $rightBoxWidth;
+		position: absolute;
+		right: -$rightBoxWidth;
+		height: 100%;
+		background: $dark-background;
+		color: $background;
+		padding: 1em;
+	}
+}
+
 .content-container {
 	position: relative;
 	padding:0;
-}
-
-.content {
-	position: relative;
-	left: 0;
-	top: -2em;
-	background: $foreground;
-	overflow-x: hidden;
-	width: 100%;
-	padding: 0 3em 0 3em;
-	height:calc(100% - 5em);
-}
-
-.header-row {
-	overflow: hidden;
-}
-
-.header-box:after {
-	display: block;
-	width: 100%;
-	background: $foreground;
-	height: 5em;
-	content: ' ';
-	z-index: 1;
-	box-shadow: 0 0 1px 1px $foreground;
-}
-
-.header-box {
-	position: relative;
-	top: 1em;
-	-webkit-transform: rotate(-3deg);
-	transform: rotate(-3deg);
-	height: 7em;
-	width:110%;
-	left: -5%;
-	overflow: hidden;
-}
-
-.header-box > h1 {
-	margin: 0;
-	padding: 0 10%;
-	font-family: sans;
-	text-align: center;
-	font-size: 3em;
-	overflow: hidden;
-	color: $foreground;
-	height:1em;
-	z-index: -1;
-	text-shadow: 0 0 5px rgba(100,100,100,0.2);
-}
-
-.header-box > h1 > a, .header-box > h1 > a:hover {
-	color: $foreground;
-}
-
-@mixin hexagon($size) {
-	&.hexagon {
-		overflow: hidden;
-		visibility: hidden;
-		-webkit-transform: rotate(120deg);
-		transform: rotate(120deg);
-		cursor: pointer;
-		width: $size;
-		height: $size*2;
-		margin: -$size/10 0 0 -$size/10;
-
-		.hexagon-in1 {
-			overflow: hidden;
-			width: 100%;
-			height: 100%;
-			-webkit-transform: rotate(-60deg);
-			transform: rotate(-60deg);
-
-			.hexagon-in2 {
-				overflow: hidden;
-				width: 100%;
-				height: 100%;
-				visibility: visible;
-				-webkit-transform: rotate(-60deg);
-				transform: rotate(-60deg);
-
-				.hexagon-background {
-					background-repeat: no-repeat;
-					background-position:center;
-					background-size: contain;
-					position: relative;
-					top: -10%;
-					left: -10%;
-					width:120%;
-					height: 120%;
-				}
-			}
-		}
-	}
-}
-
-.hexes1 {
-	position:absolute;
-	overflow: hidden;
-	right:0;
-	width: 100%;
 	height: 100%;
-}
 
-#bg-hex1 {
-	@include hexagon(200px);
-	position: absolute;
-	right: 10px;
-	top: 10px;
-	.hexagon-background {
-		background: darken($background, 10);
+	.content {
+		position: relative;
+		left: 0;
+		top: -2em;
+		background: $foreground;
+		overflow-x: hidden;
+		width: 100%;
+		padding: 0 3em 0 3em;
+		height:calc(100% - 5em);
 	}
 }
 
-#bg-hex2 {
-	@include hexagon(100px);
-	position: absolute;
-	right: 215px;
-	top: 130px;
-	.hexagon-background {
-		background: darken($background, 10);
-	}
-}
-
-#bg-hex3 {
-	@include hexagon(100px);
-	position: absolute;
-	right: 161px;
-	top: 221px;
-	.hexagon-background {
-		background: darken($background, 10);
-	}
-}
-
-.hexes2 {
-	position:absolute;
-	overflow: hidden;
-	left:0;
-	top: -40px;
-	width: 100%;
-	height: 100%;
-}
-
-#bg-hex4 {
-	@include hexagon(100px);
-	position: absolute;
-	left: 61px;
-	top: 121px;
-	.hexagon-background {
-		background: darken($background, 10);
-	}
-}
-
-#bg-hex5 {
-	@include hexagon(100px);
-	position: absolute;
-	left: 6px;
-	top: 31px;
-	.hexagon-background {
-		background: darken($background, 10);
-	}
-}
-
-#bg-hex6 {
-	@include hexagon(100px);
-	position: absolute;
-	left: 166px;
-	top: 121px;
-	.hexagon-background {
-		background: darken($background, 10);
-	}
-}
+@import "header";
+@import "hexagons";
+@import "helpers";

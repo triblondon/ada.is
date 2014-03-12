@@ -3,8 +3,9 @@
 $background: #00A6D6;
 $foreground: #ffffff;
 $dark-background: darken($foreground, 90%);
-
-
+$leftBoxWidth: 16em;
+$rightBoxWidth: 20em;
+$padding: 1em;
 
 html, body, .container, .row {
 	margin-left: 0;
@@ -22,8 +23,6 @@ body {
 }
 
 .row {
-	$leftBoxWidth: 200px;
-	$rightBoxWidth: 300px;
 	&.left {
 		transform: translate($leftBoxWidth, 0px);
 	}
@@ -34,23 +33,25 @@ body {
 	transition: transform 500ms cubic-bezier(0.020, 0.665, 0.460, 1.145);
 
 	.left-box {
-		width: $leftBoxWidth;
+		width: $leftBoxWidth*1.2;
 		position: absolute;
-		left: -$leftBoxWidth;
+		left: -$leftBoxWidth*1.2;
+		padding: $padding;
+		padding-left: ($leftBoxWidth * 0.2) + $padding;
 		height: 100%;
 		background: $dark-background;
 		color: $background;
-		padding: 1em;
 	}
 
 	.right-box {
-		width: $rightBoxWidth;
+		width: $rightBoxWidth*1.2;
 		position: absolute;
-		right: -$rightBoxWidth;
+		right: -$rightBoxWidth*1.2;
+		padding: $padding;
+		padding-right: ($leftBoxWidth * 0.2) + $padding;
 		height: 100%;
 		background: $dark-background;
 		color: $background;
-		padding: 1em;
 	}
 }
 

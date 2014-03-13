@@ -1,5 +1,5 @@
 console.log('Starting Scripts');
-window.$ = function (str) {
+var $ = function (str) {
 	return document.querySelector(str);
 };
 

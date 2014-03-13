@@ -30,6 +30,10 @@ module.exports = function (grunt) {
 			dist: 'dist'
 		},
 		watch: {
+			browserify: {
+				files: ['<%= yeoman.app %>/commonjs/**/*.js'],
+				tasks: ['browserify', 'autoprefixer:server']
+			},
 			sass: {
 				files: ['<%= yeoman.app %>/_scss/**/*.{scss,sass}'],
 				tasks: ['sass:server', 'autoprefixer:server']
@@ -53,6 +57,7 @@ module.exports = function (grunt) {
 					'.jekyll/**/*.html',
 					'.tmp/css/**/*.css',
 					'{.tmp,<%= yeoman.app %>}/<%= js %>/**/*.js',
+					'{.tmp,<%= yeoman.app %>}/commonjs/**/*.js',
 					'<%= yeoman.app %>/img/**/*.{gif,jpg,jpeg,png,svg,webp}'
 				]
 			}

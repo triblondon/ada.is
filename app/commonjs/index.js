@@ -3,7 +3,7 @@ var $ = function (str) {
 	return document.querySelector(str);
 };
 
-function openLeft(e) {
+function openRight(e) {
 	e.preventDefault();
 	if (!$('.row').classList.contains('right')) {
 		$('.row').classList.add('right');
@@ -13,7 +13,7 @@ function openLeft(e) {
 	}
 }
 
-function openRight(e) {
+function openLeft(e) {
 	e.preventDefault(e);
 	if (!$('.row').classList.contains('left')) {
 		$('.row').classList.add('left');

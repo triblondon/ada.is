@@ -9,6 +9,10 @@ $padding: 1em;
 
 @import "font";
 
+html, body {
+	position: fixed;
+}
+
 html, body, .container, .row {
 	margin-left: 0;
 	margin-right: 0;
@@ -60,6 +64,10 @@ body {
 		background: $dark-background;
 		color: $background;
 	}
+}
+
+.btn {
+	z-index: 120;
 }
 
 .content-container {

@@ -30,10 +30,12 @@ $('#meButton').addEventListener('click', toggleLeft);
 
 $('#commentButton').addEventListener('click', toggleRight);
 
-hammer($('.left-box')).on('swipeleft', function(event) {
+hammer($('.left-box')).on('dragleft', function(event) {
+	event.preventDefault();
     $('.row').classList.remove('left');
 });
 
-hammer($('.right-box')).on('swiperight', function(event) {
+hammer($('.right-box')).on('dragright', function(event) {
+	event.preventDefault();
     $('.row').classList.remove('right');
 });

@@ -1,9 +1,12 @@
 console.log('Starting Scripts');
+
 var $ = function (str) {
 	return document.querySelector(str);
 };
 
-function openRight(e) {
+var hammer = require('hammerjs');
+
+function toggleRight(e) {
 	e.preventDefault();
 	if (!$('.row').classList.contains('right')) {
 		$('.row').classList.add('right');
@@ -13,7 +16,7 @@ function openRight(e) {
 	}
 }
 
-function openLeft(e) {
+function toggleLeft(e) {
 	e.preventDefault(e);
 	if (!$('.row').classList.contains('left')) {
 		$('.row').classList.add('left');
@@ -23,6 +26,14 @@ function openLeft(e) {
 	}
 }
 
-$('#meButton').addEventListener('click', openLeft);
+$('#meButton').addEventListener('click', toggleLeft);
 
-$('#commentButton').addEventListener('click', openRight);
+$('#commentButton').addEventListener('click', toggleRight);
+
+hammer($('.left-box')).on('swipeleft', function(event) {
+    $('.row').classList.remove('left');
+});
+
+hammer($('.right-box')).on('swiperight', function(event) {
+    $('.row').classList.remove('right');
+});

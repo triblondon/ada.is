@@ -39,3 +39,15 @@ hammer($('.right-box')).on('dragright', function(event) {
 	event.preventDefault();
     $('.row').classList.remove('right');
 });
+
+hammer($('.btn.left')).on('dragright', function(event) {
+	event.preventDefault();
+    $('.row').classList.add('left');
+    $('.row').classList.remove('right');
+});
+
+hammer($('.btn.right')).on('dragleft', function(event) {
+	event.preventDefault();
+    $('.row').classList.add('right');
+    $('.row').classList.remove('left');
+});

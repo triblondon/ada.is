@@ -28,3 +28,7 @@ markdown: redcarpet
 #   extensions: ['fenced_code_blocks', 'smart']
 
 pygments: true
+
+giturl: https://github.com/AdaRoseEdwards
+pageurl: https://ada.is
+pullreq: https://github.com/AdaRoseEdwards/ada.is/tree/master/app/

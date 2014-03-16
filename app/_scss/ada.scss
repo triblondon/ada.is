@@ -1,10 +1,11 @@
 @import "helpers";
+@import "vars";
 
 $background: #00A6D6;
 $foreground: #ffffff;
 $dark-background: darken($foreground, 90%);
 $leftBoxWidth: 16em;
-$rightBoxWidth: 20em;
+$rightBoxWidth:20em;
 $padding: 1em;
 
 @import "font";
@@ -33,36 +34,71 @@ body {
 .row {
 
 	overflow: visible;
+	transition: transform 500ms cubic-bezier(0.020, 0.665, 0.460, 1.145);
 
 	&.left {
-		transform: translate($leftBoxWidth, 0px);
+		transform: translate(100%, 0px);
 	}
 
 	&.right {
-		transform: translate(-$rightBoxWidth, 0px);
+		transform: translate(-100%, 0px);
 	}
-	transition: transform 500ms cubic-bezier(0.020, 0.665, 0.460, 1.145);
 
 	.left-box {
-		width: $leftBoxWidth*1.2;
+		width: 100%*1.2;
+		left: -100%*1.2;
+		padding-left: (100% * 0.2);
 		position: absolute;
-		left: -$leftBoxWidth*1.2;
-		padding: $padding;
-		padding-left: ($leftBoxWidth * 0.2) + $padding;
 		height: 100%;
 		background: $dark-background;
 		color: $background;
 	}
 
 	.right-box {
-		width: $rightBoxWidth*1.2;
+		width: 100%*1.2;
+		right: -100%*1.2;
+		padding-right: (100% * 0.2);
 		position: absolute;
-		right: -$rightBoxWidth*1.2;
-		padding: $padding;
-		padding-right: ($leftBoxWidth * 0.2) + $padding;
 		height: 100%;
 		background: $dark-background;
 		color: $background;
+	}
+
+	@media (min-width: $screen-sm-min) {
+		&.left {
+			transform: translate($leftBoxWidth, 0px);
+		}
+
+		&.right {
+			transform: translate(-$rightBoxWidth, 0px);
+		}
+
+		.left-box {
+			width: $leftBoxWidth*1.2;
+			left: -$leftBoxWidth*1.2;
+			padding-left: ($leftBoxWidth * 0.2);
+		}
+
+		.right-box {
+			width: $rightBoxWidth*1.2;
+			right: -$rightBoxWidth*1.2;
+			padding-right: ($leftBoxWidth * 0.2);
+		}
+	}
+
+
+	@media (min-width: $screen-lg-min) {
+		&.right {
+			transform: translate(0px, 0px);
+		}
+
+		.btn-right {
+			display:none;
+		}
+
+		.right-box {
+			right:0;
+		}
 	}
 }
 

@@ -94,7 +94,7 @@ body {
 			transform: translate(0px, 0px);
 		}
 
-		.btn.right {
+		.btn.btn-right {
 			display:none;
 		}
 
@@ -107,6 +107,7 @@ body {
 .btn {
 	z-index: 120;
 	height: 100%;
+	bottom: 0;
 }
 
 .content-container {

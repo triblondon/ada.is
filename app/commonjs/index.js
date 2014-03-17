@@ -1,10 +1,18 @@
 console.log('Starting Scripts');
 
+
+var hammer = require('hammerjs');
+var optimizedResize = require('./optimizedresize');
 var $ = function (str) {
 	return document.querySelector(str);
 };
 
-var hammer = require('hammerjs');
+var writeHeights = function () {
+	$('.btn.btn-left').style.height = window.innerHeight + 'px';
+	$('.btn.btn-right').style.height = window.innerHeight + 'px';
+};
+writeHeights();
+optimizedResize.init(writeHeights);
 
 function toggleRight(e) {
 	e.preventDefault();
@@ -27,7 +35,6 @@ function toggleLeft(e) {
 }
 
 $('#meButton').addEventListener('click', toggleLeft);
-
 $('#commentButton').addEventListener('click', toggleRight);
 
 hammer($('.left-box')).on('dragleft', function(event) {
@@ -40,14 +47,16 @@ hammer($('.right-box')).on('dragright', function(event) {
     $('.row').classList.remove('right');
 });
 
-hammer($('.btn.left')).on('dragright', function(event) {
+hammer($('.btn.btn-left')).on('dragright', function(event) {
 	event.preventDefault();
+	event.stopPropagation();
     $('.row').classList.add('left');
     $('.row').classList.remove('right');
 });
 
-hammer($('.btn.right')).on('dragleft', function(event) {
+hammer($('.btn.btn-right')).on('dragleft', function(event) {
 	event.preventDefault();
+	event.stopPropagation();
     $('.row').classList.add('right');
     $('.row').classList.remove('left');
 });

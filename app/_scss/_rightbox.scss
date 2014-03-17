@@ -1,0 +1,12 @@
+.right-box {
+	top: 0;
+	width: 100%;
+	right: -100%;
+	padding-right: 1em;
+	padding-left: 1em;
+	position: absolute;
+	height: 100%;
+	background: $foreground;
+	color: $background;
+	overflow-y:auto;
+}

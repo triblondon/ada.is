@@ -1,6 +1,16 @@
 /*
 	 Animation example, for spinners
 */
+
+@keyframes blink {
+	0% {visibility:hidden }
+	50% {visibility:inherit}
+}
+
+.blink {
+	animation: blink 1s step-end infinite;
+}
+
 .animate-spin {
 	-moz-animation: spin 2s infinite linear;
 	-o-animation: spin 2s infinite linear;

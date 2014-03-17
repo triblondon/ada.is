@@ -3,7 +3,7 @@
 
 $background: #00A6D6;
 $foreground: #ffffff;
-$dark-background: darken($foreground, 90%);
+$dark-background: darken($foreground, 80%);
 $leftBoxWidth: 16em;
 $rightBoxWidth:20em;
 $padding: 1em;
@@ -42,17 +42,6 @@ body {
 
 	&.right {
 		transform: translate(-100%, 0px);
-	}
-
-	.left-box {
-		top: 0;
-		width: 100%*1.2;
-		left: -100%*1.2;
-		padding-left: (100% * 0.2);
-		position: absolute;
-		height: 100%;
-		background: $dark-background;
-		color: $background;
 	}
 
 	.right-box {
@@ -128,6 +117,7 @@ body {
 	}
 }
 
+@import "leftbox";
 @import "header";
 @import "hexagons";
 @import "helpers";

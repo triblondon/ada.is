@@ -3,10 +3,24 @@
 	width: 100%;
 	right: -100%;
 	padding-right: 1em;
-	padding-left: 1em;
+	padding-left: 2em;
 	position: absolute;
 	height: 100%;
 	background: $foreground;
 	color: $background;
 	overflow-y:auto;
+
+	&:before {
+		padding:50% 0;
+		letter-spacing: 1em;
+		content: '';
+		display: block;
+		height: 100%;
+		width: 7px;
+		position: absolute;
+		top: -1px;
+		left: 1px;
+		border-left:3px double grey;
+		border-right:3px double grey;
+	}
 }

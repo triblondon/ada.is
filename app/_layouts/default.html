@@ -7,7 +7,7 @@
     <meta name="description" content="">
     <meta http-equiv="cleartype" content="on" />
     <meta name="MobileOptimized" content="width" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimal-ui" />
     <meta name="HandheldFriendly" content="true" />
     <!-- Place favicon.ico and apple-touch-icon(s) in the root directory -->
 
@@ -24,10 +24,6 @@
   </body>
     <div class="container">
       <div class="row">
-        <span class="icon-user btn btn-left" id="meButton"></span>
-        <span class="icon-list-nested btn btn-right" id="commentButton"></span>
-        {% include leftbox.html %}
-        {% include rightbox.html %}
         <div class="content-container col-xs-12 col-sm-9 col-sm-offset-1 col-md-7 col-md-offset-2 col-lg-6 col-lg-offset-2">
           <div class="header-row">
             <div class="header-box">
@@ -41,6 +37,10 @@
             {{ content }}
           </div>
         </div>
+        <span class="icon-user btn btn-left" id="meButton"></span>
+        <span class="icon-list-nested btn btn-right" id="commentButton"></span>
+        {% include leftbox.html %}
+        {% include rightbox.html %}
       </div>
     </div>
     {% include scripts.html %}

@@ -35,7 +35,7 @@ function openRight(noHistory) {
 
 function openLeft(noHistory) {
 	close(true);
-	if (!$('.row').classList.contains('left')) { 
+	if (!$('.row').classList.contains('left')) {
 		if (!noHistory) {
 			history.pushState({sidebar: 'left'}, '', '#left');
 		}

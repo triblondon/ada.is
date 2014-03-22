@@ -13,26 +13,34 @@ var writeHeights = function () {
 writeHeights();
 optimizedResize.init(writeHeights);
 
-function closeRight() {
-	history.replaceState({sidebar: 'closed'});
-	$('.row').classList.remove('right');
+function close(noHistory) {
+	if ($('.row').classList.contains('left') || $('.row').classList.contains('right')) {
+		if (!noHistory) {
+			history.pushState({sidebar: 'closed'}, '', '#main');
+		}
+		$('.row').classList.remove('right');
+		$('.row').classList.remove('left');
+	}
 }
 
-function closeLeft() {
-	history.replaceState({sidebar: 'closed'});
-	$('.row').classList.remove('left');
+function openRight(noHistory) {
+	if (!$('.row').classList.contains('left')) {
+		close(true);
+		if (!noHistory) {
+			history.pushState({sidebar: 'right'}, '', '#right');
+		}
+		$('.row').classList.add('right');
+	}
 }
 
-function openRight() {
-	closeLeft();
-	history.replaceState({sidebar: 'right'});
-	$('.row').classList.add('right');
-}
-
-function openLeft() {
-	closeRight();
-	history.replaceState({sidebar: 'left'});
-	$('.row').classList.add('left');
+function openLeft(noHistory) {
+	close(true);
+	if (!$('.row').classList.contains('left')) { 
+		if (!noHistory) {
+			history.pushState({sidebar: 'left'}, '', '#left');
+		}
+		$('.row').classList.add('left');
+	}
 }
 
 function toggleRight(e) {
@@ -40,7 +48,7 @@ function toggleRight(e) {
 	if (!$('.row').classList.contains('right')) {
 		openRight();
 	} else {
-		closeRight();
+		close();
 	}
 }
 
@@ -49,34 +57,35 @@ function toggleLeft(e) {
 	if (!$('.row').classList.contains('left')) {
 		openLeft();
 	} else {
-		closeLeft();
+		close();
 	}
 }
 
-$('#meButton').addEventListener('click', toggleLeft);
-$('#commentButton').addEventListener('click', toggleRight);
 window.addEventListener('popstate', function (event) {
 	var sidebar = history.state ? history.state.sidebar : 'closed';
 	if (sidebar === 'left') {
-		openLeft();
+		openLeft(true);
 	}
 	if (sidebar === 'right') {
-		openRight();
+		openRight(true);
 	}
 	if (sidebar === 'closed') {
-		closeLeft();
-		closeRight();
+		close(true);
 	}
 });
 
+
+$('#meButton').addEventListener('click', toggleLeft);
+$('#commentButton').addEventListener('click', toggleRight);
+
 hammer($('.left-box')).on('dragleft', function(event) {
 	event.preventDefault();
-    closeLeft();
+    close();
 });
 
 hammer($('.right-box')).on('dragright', function(event) {
 	event.preventDefault();
-	closeRight();
+	close();
 });
 
 hammer($('.btn.btn-left')).on('dragright', function(event) {

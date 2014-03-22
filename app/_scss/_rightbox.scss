@@ -22,11 +22,12 @@
 		left: 1px;
 		border-left:3px double grey;
 		border-right:3px double grey;
+		box-shadow: 0 0 4px -1px black;
 	}
 
 	@media (min-width: $screen-lg-min) {
 		&:before {
-			border-style: none;
+			display: none;
 		}
 	}
 }

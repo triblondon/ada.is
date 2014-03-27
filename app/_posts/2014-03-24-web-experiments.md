@@ -1,10 +1,9 @@
 ---
 layout: post
-title:  "Web Experiments"
+title:  "Experiments in web tech"
 categories: Blog
 ---
 
-# Experiments in web tech.
 ##### Status: Draft - Please comment and I will elaborate.
 
 This project explores progressive enhancement, web components, spdy and a few other bits and bobs.

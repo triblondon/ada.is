@@ -4,11 +4,11 @@ title: Ada Rose Edwards
 ---
 
 <section class="home posts">
-  <h4>Blog Posts</h4>
   {% for post in site.posts %}
-    <article>
+    <a class="article-link" href="{{ post.url }}"><article>
+    	<h1>{{ post.title }}</h1>
+		{{ post.excerpt }}
     	<time>{{ post.date | date_to_string }}</time>
-    	&raquo; <a href="{{ post.url }}">{{ post.title }}</a>
-    	<br />{{ post.excerpt }}</article>
+    </article></a>
   {% endfor %}
 </section>

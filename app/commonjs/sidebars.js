@@ -16,7 +16,7 @@ optimizedResize.init(writeHeights);
 function close(noHistory) {
 	if ($('.row').classList.contains('left') || $('.row').classList.contains('right')) {
 		if (!noHistory) {
-			history.pushState({sidebar: 'closed'}, '', '#main');
+			history.pushState({sidebar: 'closed'}, '');
 		}
 		$('.row').classList.remove('right');
 		$('.row').classList.remove('left');
@@ -27,7 +27,7 @@ function openRight(noHistory) {
 	if (!$('.row').classList.contains('left')) {
 		close(true);
 		if (!noHistory) {
-			history.pushState({sidebar: 'right'}, '', '#right');
+			history.pushState({sidebar: 'right'}, '');
 		}
 		$('.row').classList.add('right');
 	}
@@ -37,7 +37,7 @@ function openLeft(noHistory) {
 	close(true);
 	if (!$('.row').classList.contains('left')) {
 		if (!noHistory) {
-			history.pushState({sidebar: 'left'}, '', '#left');
+			history.pushState({sidebar: 'left'}, '');
 		}
 		$('.row').classList.add('left');
 	}

@@ -1,0 +1,30 @@
+body.special {
+
+	a.article-link {
+		padding: 1em;
+		display: block;
+		background: lighten($background, 55%);
+		margin: 0 0 1em 0;
+		border-radius: 1em;
+		text-decoration: none;
+
+		&:first-child {
+			margin-top: 1em;
+		}
+
+		&:hover {
+			background: lighten($background, 50%);
+		}
+
+		&:active {
+			background: adjust-hue(lighten($background, 55%), -55%);
+		}
+
+		article {
+			border: 1px dashed lighten($background, 20%);
+			border-radius: 0.8em;
+			padding: 0 1em 1em 1em;
+			margin: 0;
+		}
+	}
+}

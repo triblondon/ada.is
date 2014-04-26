@@ -2,6 +2,7 @@
 layout: post
 title:  "Experiments in web tech"
 categories: Blog
+author: Ada Rose Edwards
 ---
 
 ##### Status: Draft - Please comment and I will elaborate.

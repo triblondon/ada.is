@@ -2,6 +2,7 @@
 layout: post
 title:  "Where it all begins..."
 categories: Blog
+author: Ada Rose Edwards
 ---
 
 (Skip this post to avoid self obsessed ramblings)

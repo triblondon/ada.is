@@ -9,7 +9,7 @@ body.special {
 		position: relative;
 		overflow: visible;
 		background: url("/img/pattern.svg");
-		margin-bottom: 2em;
+		padding-top: 1em;
 
 		.hero {
 			font-weight: 300;
@@ -21,11 +21,27 @@ body.special {
 			font-weight: 300;
 			font-size: 1.5em;
 		}
+
+		.page-title {
+			font-weight: 800;
+			font-size: 2.5em;
+		}
+	}
+
+	.row.body {
+		padding-top: 2em;
 	}
 
 	.content-container {
 		height: 100%;
 		background-color: white;
+	}
+
+	time {
+		font-size: 1.5em;
+		font-weight: 300;
+		font-style: italic;
+		margin-top: 1em;
 	}
 
 	a.article-link {

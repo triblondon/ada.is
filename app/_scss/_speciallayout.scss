@@ -1,12 +1,30 @@
 body.special {
+	background: url("/img/lhc.png");
+	align: justify;
+
+	.head-hexagon {
+		float: left;
+		position: relative;
+		display: inline-block;
+		margin: 8em 2em;
+		transition: transform 600ms ceaser(easeInOutBack);
+		transform: scale(1) rotate(0deg);
+		&:hover {
+			transform: scale(1.1) rotate(6deg);
+		}
+	}
 
 	a.article-link {
 		padding: 1em;
-		display: block;
+		display: inline-block;
 		background: lighten($background, 55%);
-		margin: 0 0 1em 0;
+		margin: 0 1em 1em 1em;
 		border-radius: 1em;
 		text-decoration: none;
+
+		&:nth-of-type(n+3) {
+			display: block;
+		}
 
 		&:first-child {
 			margin-top: 1em;

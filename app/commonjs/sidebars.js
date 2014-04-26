@@ -5,10 +5,12 @@ var $ = function (str) {
 };
 
 var writeHeights = function () {
-	$('.btn.btn-left').style.height = window.innerHeight + 'px';
-	$('.btn.btn-right').style.height = window.innerHeight + 'px';
-	$('.right-box').style.height = window.innerHeight + 'px';
-	$('.left-box').style.height = window.innerHeight + 'px';
+	if ($('.right-box')) {
+		$('.btn.btn-left').style.height = window.innerHeight + 'px';
+		$('.btn.btn-right').style.height = window.innerHeight + 'px';
+		$('.right-box').style.height = window.innerHeight + 'px';
+		$('.left-box').style.height = window.innerHeight + 'px';
+	}
 };
 writeHeights();
 optimizedResize.init(writeHeights);

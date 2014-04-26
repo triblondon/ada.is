@@ -35,7 +35,7 @@
             <div class="hexBottom"></div>
           </div>
           {% if page.title %}
-          <h3>by {{ page.author }}</h2>
+          <h3>by {{ page.author }}</h3>
           <time datetime="{{ page.date }}">{{ page.date | date: "%-d %B %Y"}}</time>
           <p><a href="{{ site.pullreq }}{{ page.path }}">Make a pull request to this post on github.</a></p>
           {% endif %}

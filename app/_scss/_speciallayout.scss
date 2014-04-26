@@ -1,33 +1,51 @@
 body.special {
-	background: url("/img/lhc.png");
-	align: justify;
 
-	.head-hexagon {
-		float: left;
+	.row.header {
+		height: auto;
+		min-height: 50vh;
+		width: 100%;
+		text-align: center;
+		background: red;
 		position: relative;
-		display: inline-block;
-		margin: 8em 2em;
-		transition: transform 600ms ceaser(easeInOutBack);
-		transform: scale(1) rotate(0deg);
-		&:hover {
-			transform: scale(1.1) rotate(6deg);
+		overflow: visible;
+		background: url("/img/pattern.svg");
+		margin-bottom: 2em;
+
+		.hero {
+			font-weight: 300;
+			font-size: 2em;
+		}
+
+		.hero-subtitle {
+			font-style: italic;
+			font-weight: 300;
+			font-size: 1.5em;
 		}
 	}
 
+	.content-container {
+		height: 100%;
+		background-color: white;
+	}
+
 	a.article-link {
-		padding: 1em;
-		display: inline-block;
-		background: lighten($background, 55%);
-		margin: 0 1em 1em 1em;
-		border-radius: 1em;
-		text-decoration: none;
+		position: relative;
+		display: block;
+		padding: 0.3em;
+		margin: 0;
 
-		&:nth-of-type(n+3) {
+		article {
+			padding: 0.2em;
+			margin: 0.2;
 			display: block;
-		}
+			border-radius: 0.3em;
+			border: 1px solid #eee;
+			background: radial-gradient(farthest-corner at 50% 100%, #fff 30%, #eee 100%);
+			box-shadow: 0 0 1em -0.2em #aaa;
 
-		&:first-child {
-			margin-top: 1em;
+			h1 {
+				margin: 0;
+			}
 		}
 
 		&:hover {
@@ -37,12 +55,34 @@ body.special {
 		&:active {
 			background: adjust-hue(lighten($background, 55%), -55%);
 		}
+	}
 
-		article {
-			border: 1px dashed lighten($background, 20%);
-			border-radius: 0.8em;
-			padding: 0 1em 1em 1em;
-			margin: 0;
+	.by-box {
+		text-align: center;
+	}
+
+	.head-hexagon {
+		text-align: initial;
+		position: relative;
+		left: 50%;
+		z-index: 2;
+		transform: translate(-50%, 0) scale(0.5);
+		transition: transform 600ms ceaser($resizeAnim);
+		@media (min-width: $screen-sm-min) {
+			transform: translate(-50%, 0) scale(0.75);
 		}
+
+		@media (min-width: $screen-md-min) {
+			transform: translate(-50%, 0) scale(0.9);
+		}
+
+		@media (min-width: $screen-lg-min) {
+			transform: translate(-50%, 0) scale(1.0);
+		}
+	}
+
+	.row.footer {
+		color: lighten($foreground, 50%);
+		padding: 1em;
 	}
 }

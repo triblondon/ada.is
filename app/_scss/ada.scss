@@ -1,28 +1,37 @@
+@import "vars";
 @import "helpers";
 @import "ceaser-easing";
-@import "vars";
+@import "hexagons";
 
-$background: #00A6D6;
-$foreground: #ffffff;
+$background: #ffffff;
+$foreground: #333333;
 $dark-background: darken($foreground, 80%);
 $leftBoxWidth: 16em;
 $rightBoxWidth:28em;
 $padding: 1em;
+$resizeAnim: easeInOutBack;
 
 @import "font";
-
-html, body {
-	position: fixed;
-}
 
 html, body, .container, .row {
 	margin-left: 0;
 	margin-right: 0;
 	padding-left: 0;
 	padding-right: 0;
-	height: 100%;
+	min-height: 100%;
 	width: 100%;
 	overflow: hidden;
+	font-family: 'Open Sans', 'sans-serif';
+	font-weight: 400;
+	color: $foreground;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-weight: 300;
+}
+
+.row > div {
+	transition: width 600ms ceaser($resizeAnim);
 }
 
 @import "speciallayout";
@@ -30,5 +39,4 @@ html, body, .container, .row {
 @import "leftbox";
 @import "rightbox";
 @import "header";
-@import "hexagons";
 @import "helpers";

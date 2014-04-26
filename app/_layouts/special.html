@@ -11,6 +11,7 @@
     <meta name="HandheldFriendly" content="true" />
     <!-- Place favicon.ico and apple-touch-icon(s) in the root directory -->
 
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400,300,600,800' rel='stylesheet' type='text/css'>
     <!-- build:css({app,.tmp}) /css/main.css -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
     <link rel="stylesheet" href="/_bower_components/normalize-css/normalize.css">
@@ -21,11 +22,28 @@
 
   </head>
   <body class="special">
-  <div class="head-hexagon">
-    <div class="hexTop"></div>
-    <div class="hexBottom"></div>
-  </div>
-    {{ content }}
+    <div class="container">
+      <div class="header row">
+          <h1 class="hero">{{ site.name }}</h1>
+          <h1 class="hero-subtitle">{{ site.description }}</h1>
+          <h1 class="page-title"><a href="{{ page.url }}">{{ page.title }}</a></h1>
+      </div>
+      <div class="row">
+        <div class="by-box hidden-xs col-sm-3 col-md-4 col-lg-4">
+          <div class="head-hexagon">
+            <div class="hexTop"></div>
+            <div class="hexBottom"></div>
+          </div>
+          {{ page.date }}
+        </div>
+        <div class="content-container col-xs-12 col-sm-9 col-md-8 col-lg-7">
+          {{ content }}
+        </div>
+      </div>
+      <div class="footer row">
+        {% include footer.html %}
+      </div>
+    </div>
     {% include scripts.html %}
   </body>
 </html>

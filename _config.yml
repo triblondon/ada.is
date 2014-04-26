@@ -3,8 +3,8 @@
 # 2. config.build.yml
 # 3. config.yml
 
-name: ada.is
-description: Ada Site
+name: Ada.is
+description: The blog of Ada-Rose Edwards
 author:
   name: Ada Rose Edwards
   email: adaroseedwards@gmail.com

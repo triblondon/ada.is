@@ -1,3 +1,61 @@
+
+body.special, body.special-index {
+	.row.header {
+		background: url("/img/pattern.svg");
+		background-size: cover;
+		padding: 1em;
+	}
+
+	.home.posts {
+		a.article-link {
+			position: relative;
+			display: block;
+			padding: 0.3em;
+			margin: 0;
+
+			article {
+				margin: 0.2em 0.2em 0.2em -1em;
+				display: block;
+				box-shadow: 1em 1em 0 rgba(darken($background, 50%), 0.2);
+				background: lighten($background, 50%);
+				max-width: 90vw;
+				padding-left: 1em;
+
+				h1 {
+					margin: 0;
+				}
+			}
+		}
+	}
+}
+
+body.special-index {
+
+	.container {
+		background: #FFF0F5;
+	}
+
+	@media screen and (orientation: landscape) {
+		.row.header {
+			width: 100vh;
+			height: 100vh;
+			float: right;
+		}
+
+		.home.posts {
+			margin-left: calc(100vh - 100vw);
+		}
+	}
+
+
+	@media screen and (orientation: portrait) {
+		.row.header {
+			width: 100vw;
+			height: 100vw;
+		}
+	}
+}
+
 body.special {
 
 	.row.header {
@@ -8,8 +66,6 @@ body.special {
 		background: red;
 		position: relative;
 		overflow: visible;
-		background: url("/img/pattern.svg");
-		background-size: cover;
 		padding-top: 1em;
 
 		.hero {
@@ -43,35 +99,6 @@ body.special {
 		font-weight: 300;
 		font-style: italic;
 		margin-top: 1em;
-	}
-
-	a.article-link {
-		position: relative;
-		display: block;
-		padding: 0.3em;
-		margin: 0;
-
-		article {
-			padding: 0.2em;
-			margin: 0.2;
-			display: block;
-			border-radius: 0.3em;
-			border: 1px solid #eee;
-			background: radial-gradient(farthest-corner at 50% 100%, #fff 30%, #eee 100%);
-			box-shadow: 0 0 1em -0.2em #aaa;
-
-			h1 {
-				margin: 0;
-			}
-		}
-
-		&:hover {
-			background: lighten($background, 50%);
-		}
-
-		&:active {
-			background: adjust-hue(lighten($background, 55%), -55%);
-		}
 	}
 
 	.by-box {

@@ -27,6 +27,17 @@ body.special, body.special-index {
 			}
 		}
 	}
+
+	.hero {
+		font-weight: 300;
+		font-size: 2em;
+	}
+
+	.hero-subtitle {
+		font-style: italic;
+		font-weight: 300;
+		font-size: 1.5em;
+	}
 }
 
 body.special-index {
@@ -62,20 +73,12 @@ body.special {
 		height: auto;
 		min-height: 50vh;
 		width: 100%;
-		text-align: center;
 		position: relative;
 		overflow: visible;
 		padding-top: 1em;
-
-		.hero {
-			font-weight: 300;
-			font-size: 2em;
-		}
-
-		.hero-subtitle {
-			font-style: italic;
-			font-weight: 300;
-			font-size: 1.5em;
+		padding-left: 1em;
+		@media screen and (orientation: landscape) {
+			padding-left: calc(1em + 100% - 100vh);
 		}
 
 		.page-title {

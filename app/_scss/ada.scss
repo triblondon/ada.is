@@ -32,6 +32,10 @@ h1, h2, h3, h4, h5, h6 {
 	transition: width 600ms ceaser($resizeAnim);
 }
 
+.highlight {
+	padding: 1em;
+}
+
 @import "speciallayout";
 @import "defaultlayout";
 @import "leftbox";

@@ -55,7 +55,6 @@
  background-image: url(https://s.gravatar.com/avatar/e137ba0321f12ecb5340680815b42c26?s=400);
  background-size: auto 230.9401px;
  background-position: center;
- box-shadow: 0 0 20px rgba(0,0,0,0.6);
 
 	.hexTop,
 	.hexBottom {
@@ -69,7 +68,6 @@
 		transform: scaleY(0.5774) rotate(-45deg);
 		background: inherit;
 		left: 29.29px;
-		box-shadow: 0 0 20px rgba(0,0,0,0.6);
 	}
 
 	/*counter transform the bg image on the caps*/
@@ -98,6 +96,7 @@
 
 	.hexBottom {
 		bottom: -70.7107px;
+		box-shadow: 0 0 20px rgba(0,0,0,0.6);
 	}
 
 	.hexBottom:after {

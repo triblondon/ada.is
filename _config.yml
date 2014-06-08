@@ -30,5 +30,5 @@ markdown: redcarpet
 pygments: true
 
 giturl: https://github.com/AdaRoseEdwards
-pageurl: https://ada.is
+pageurl: http://ada.is
 pullreq: https://github.com/AdaRoseEdwards/ada.is/tree/master/app/

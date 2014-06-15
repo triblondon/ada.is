@@ -13,3 +13,7 @@ $screen-tablet: $screen-sm-min;
 $screen-desktop: $screen-md-min;
 $screen-lg-desktop: $screen-lg-min;
 $screen-md-max: ($screen-lg-min - 1px);
+
+$background: #ffffff;
+$foreground: #333333;
+$dark-background: darken($foreground, 80%);

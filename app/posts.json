@@ -3,8 +3,8 @@ title : JSON
 ---
 {
   "homepage": "{{ site.pageurl }}",
-  "name": "{{ site.title }}",
-  "description": "{{ site.tagline }}",
+  "name": "{{ site.name }}",
+  "description": "{{ site.description }}",
   "author": "{{ site.author.name }}",
   "posts": [{% for post in site.posts %}
     {

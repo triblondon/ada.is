@@ -6,28 +6,6 @@ body.special, body.special-index {
 		padding: 1em;
 	}
 
-	.home.posts {
-		a.article-link {
-			position: relative;
-			display: block;
-			padding: 0.3em;
-			margin: 0;
-
-			article {
-				margin: 0.2em 0.2em 0.2em -1em;
-				display: block;
-				box-shadow: 1em 1em 0 rgba(darken($background, 50%), 0.2);
-				background: lighten($background, 50%);
-				max-width: 90vw;
-				padding-left: 1em;
-
-				h1 {
-					margin: 0;
-				}
-			}
-		}
-	}
-
 	.hero {
 		font-weight: 300;
 		font-size: 2em;
@@ -65,6 +43,28 @@ body.special-index {
 			height: 100vw;
 		}
 	}
+
+	.home.posts {
+		a.article-link {
+			position: relative;
+			display: block;
+			padding: 0.3em;
+			margin: 0;
+
+			article {
+				margin: 0.2em 0.2em 0.2em -1em;
+				display: block;
+				box-shadow: 1em 1em 0 rgba(darken($background, 50%), 0.2);
+				background: lighten($background, 50%);
+				max-width: 90vw;
+				padding-left: 1em;
+
+				h1 {
+					margin: 0;
+				}
+			}
+		}
+	}
 }
 
 body.special {
@@ -89,6 +89,15 @@ body.special {
 
 	.row.body {
 		padding-top: 2em;
+
+		.pr-link {
+			font-weight: bold;
+			margin-bottom: 1em;
+		}
+
+		.pr-link:before {
+			content: '> ';
+		}
 	}
 
 	.content-container {

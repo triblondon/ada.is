@@ -22,6 +22,7 @@ The first step is to set up fruitmachine. Fruitmachine can use many different te
 
 For a fruitmachine module you are required to define a template and a define the module in the fruitmachine engine.
 
+{% highlight javascript linenos %}
     var fruitmachine = require('fruitmachine');
     var templates = require('../templates');
 
@@ -29,6 +30,7 @@ For a fruitmachine module you are required to define a template and a define the
 	    name: 'banana',
 	    template: templates.banana
     });
+{% endhighlight %}
 
 Fruitmachine is extremely flexible in that it's possible to have many different configurations depending on your needs. I went with a setup in which all of the components for the fruit were kept together.
 

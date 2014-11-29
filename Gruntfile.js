@@ -260,7 +260,7 @@ module.exports = function (grunt) {
 		buildcontrol: {
 			dist: {
 				options: {
-					remote: '~/public_html/',
+					remote: 'ssh://ada@1am.club:~/public_html/.git',
 					branch: 'gh-pages',
 					commit: true,
 					push: true

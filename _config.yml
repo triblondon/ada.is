@@ -3,11 +3,11 @@
 # 2. config.build.yml
 # 3. config.yml
 
-name: ada.is-2
-description: 
+name: Ada.is
+description: The blog of Ada-Rose Edwards
 author:
   name: Ada Rose Edwards
-  email: ada@ada.is
+  email: adaroseedwards@gmail.com
 
 # Grunt handles images and assets.
 exclude: ['img', 'css', 'js', 'fonts',
@@ -19,8 +19,16 @@ include: ['.htaccess']
 future: true
 show_drafts: true
 
+permalink: pretty
+paginate: 5
+paginate_path: 'page:num'
+
 # Markdown library
-markdown: rdiscount
-#   extensions: []
+markdown: redcarpet
+#   extensions: ['fenced_code_blocks', 'smart']
 
 pygments: true
+
+giturl: https://github.com/AdaRoseEdwards
+pageurl: http://ada.is
+pullreq: https://github.com/AdaRoseEdwards/ada.is/tree/master/app/

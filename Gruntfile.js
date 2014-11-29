@@ -263,7 +263,8 @@ module.exports = function (grunt) {
 					remote: 'ssh://ada@1am.club/~/public_html/.git',
 					branch: 'gh-pages',
 					commit: true,
-					push: true
+					push: true,
+					tag: true
 				}
 			}
 		},

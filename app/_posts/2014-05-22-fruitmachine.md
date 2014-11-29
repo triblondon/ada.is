@@ -48,6 +48,6 @@ I through together `gulp-import-gen.js` to be used as a gulp plugin to generate 
 
 I also added browserify and tweaked gulp watch to watch the new directory tree and gulp gh deploy to deploy github pages.
 
-You can view the end result at [[http://ada.is/ft-ada]](http://ada.is/ft-ada)
+You can view the end result at [[http://adaroseedwards.github.io/ft-ada/]](http://adaroseedwards.github.io/ft-ada/)
 
 To do: compile these folders into webcomponents so that the dom looks really lovely and pretty.

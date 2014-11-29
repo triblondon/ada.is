@@ -1,4 +1,4 @@
-// Generated on 2014-03-02 using generator-jekyllrb 1.2.1
+// Generated on 2014-11-29 using generator-jekyllrb 1.2.1
 'use strict';
 
 // Directory reference:
@@ -9,8 +9,6 @@
 //	 fonts: fonts
 
 module.exports = function (grunt) {
-
-	grunt.loadNpmTasks('grunt-browserify');
 	// Show elapsed time after tasks run
 	require('time-grunt')(grunt);
 	// Load all Grunt tasks
@@ -18,25 +16,14 @@ module.exports = function (grunt) {
 
 	grunt.initConfig({
 		// Configurable paths
-		browserify: {
-			dist: {
-				files: {
-					'app/js/main.js': ['app/commonjs/**/*.js']
-				}
-			}
-		},
 		yeoman: {
 			app: 'app',
 			dist: 'dist'
 		},
 		watch: {
-			browserify: {
-				files: ['<%= yeoman.app %>/commonjs/**/*.js'],
-				tasks: ['browserify', 'autoprefixer:server']
-			},
 			sass: {
 				files: ['<%= yeoman.app %>/_scss/**/*.{scss,sass}'],
-				tasks: ['sass:server', 'autoprefixer:server']
+				tasks: ['sass:server']
 			},
 			autoprefixer: {
 				files: ['<%= yeoman.app %>/css/**/*.css'],
@@ -44,7 +31,7 @@ module.exports = function (grunt) {
 			},
 			jekyll: {
 				files: [
-					'<%= yeoman.app %>/**/*.{html,yml,md,mkd,markdown,json}',
+					'<%= yeoman.app %>/**/*.{html,yml,md,mkd,markdown}',
 					'!<%= yeoman.app %>/_bower_components/**/*'
 				],
 				tasks: ['jekyll:server']
@@ -55,10 +42,8 @@ module.exports = function (grunt) {
 				},
 				files: [
 					'.jekyll/**/*.html',
-					'.jekyll/**/*.json',
-					'.tmp/css/**/*.css',
+					'{.tmp,<%= yeoman.app %>}/css/**/*.css',
 					'{.tmp,<%= yeoman.app %>}/<%= js %>/**/*.js',
-					'{.tmp,<%= yeoman.app %>}/commonjs/**/*.js',
 					'<%= yeoman.app %>/img/**/*.{gif,jpg,jpeg,png,svg,webp}'
 				]
 			}
@@ -144,27 +129,6 @@ module.exports = function (grunt) {
 					src: '**/*.{scss,sass}',
 					dest: '.tmp/css',
 					ext: '.css'
-				}]
-			}
-		},
-		autoprefixer: {
-			options: {
-				browsers: ['last 2 versions']
-			},
-			dist: {
-				files: [{
-					expand: true,
-					cwd: '<%= yeoman.dist %>/css',
-					src: '**/*.css',
-					dest: '<%= yeoman.dist %>/css'
-				}]
-			},
-			server: {
-				files: [{
-					expand: true,
-					cwd: '.tmp/css',
-					src: '**/*.css',
-					dest: '.tmp/css'
 				}]
 			}
 		},
@@ -268,23 +232,13 @@ module.exports = function (grunt) {
 						'img/**/*',
 						'fonts/**/*',
 						// Like Jekyll, exclude files & folders prefixed with an underscore.
-						'!**/_*{,/**}',
+						'!**/_*{,/**}'
 						// Explicitly add any files your site needs for distribution here.
 						//'_bower_components/jquery/jquery.js',
-						'favicon.ico',
+						//'favicon.ico',
 						//'apple-touch*.png'
 					],
 					dest: '<%= yeoman.dist %>'
-				}]
-			},
-			// Copy CSS into .tmp directory for Autoprefixer processing
-			stageCss: {
-				files: [{
-					expand: true,
-					dot: true,
-					cwd: '<%= yeoman.app %>/css',
-					src: '**/*.css',
-					dest: '.tmp/css'
 				}]
 			}
 		},
@@ -306,10 +260,10 @@ module.exports = function (grunt) {
 		buildcontrol: {
 			dist: {
 				options: {
-					remote: 'git@github.com:AdaRoseEdwards/adaroseedwards.github.io.git',
-					branch: 'master',
+					remote: '~/public_html/',
+					branch: 'gh-pages',
 					commit: true,
-					push: true,
+					push: true
 				}
 			}
 		},
@@ -320,7 +274,7 @@ module.exports = function (grunt) {
 			},
 			all: [
 				'Gruntfile.js',
-				'<%= yeoman.app %>/commonjs/**/*.js',
+				'<%= yeoman.app %>/js/**/*.js',
 				'test/spec/**/*.js'
 			]
 		},
@@ -337,7 +291,6 @@ module.exports = function (grunt) {
 		concurrent: {
 			server: [
 				'sass:server',
-				'copy:stageCss',
 				'jekyll:server'
 			],
 			dist: [
@@ -356,7 +309,6 @@ module.exports = function (grunt) {
 		grunt.task.run([
 			'clean:server',
 			'concurrent:server',
-			'autoprefixer:server',
 			'connect:livereload',
 			'watch'
 		]);
@@ -384,14 +336,11 @@ module.exports = function (grunt) {
 
 	grunt.registerTask('build', [
 		'clean',
-		'browserify',
 		// Jekyll cleans files from the target directory, so must run first
 		'jekyll:dist',
 		'concurrent:dist',
 		'useminPrepare',
-		'autoprefixer:server',
 		'concat',
-		'autoprefixer:dist',
 		'cssmin',
 		'uglify',
 		'imagemin',
@@ -399,14 +348,14 @@ module.exports = function (grunt) {
 		'filerev',
 		'usemin',
 		'htmlmin'
-	]);
+		]);
 
 	grunt.registerTask('deploy', [
 		'check',
 		'test',
 		'build',
 		'buildcontrol'
-	]);
+		]);
 
 	grunt.registerTask('default', [
 		'check',

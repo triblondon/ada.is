@@ -1,5 +1,14 @@
 
 body.special, body.special-index {
+
+	background: $ada-pink;
+
+	article {
+		h1, h2, h3, h4, h5, h6 {
+			border-bottom: 1px solid $shadow;
+		}
+	}
+
 	.row.header {
 		background: url("/img/pattern.svg");
 		background-size: cover;
@@ -31,8 +40,9 @@ body.special-index {
 			float: right;
 		}
 
-		.home.posts {
+		.home-posts {
 			margin-left: calc(100vh - 100vw);
+			padding-left: 1em;
 		}
 	}
 
@@ -44,8 +54,8 @@ body.special-index {
 		}
 	}
 
-	.home.posts {
-		article {
+	.home-posts {
+		.home-posts_item {
 			.article-link > h1 {
 				background: $foreground;
 				margin: 0;
@@ -56,10 +66,11 @@ body.special-index {
 			padding: 0.3em;
 			margin: 0 0 2em 0;
 			display: block;
-			box-shadow: 1em 1em 0 rgba(darken($background, 50%), 0.2);
+			box-shadow: 1em 1em 0 $shadow;
 			background: lighten($foreground, 50%);
 			max-width: 90vw;
 			padding-left: 1em;
+			overflow: hidden;
 		}
 	}
 }

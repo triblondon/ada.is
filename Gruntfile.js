@@ -235,7 +235,8 @@ module.exports = function (grunt) {
 						'!**/_*{,/**}',
 						// Explicitly add any files your site needs for distribution here.
 						//'_bower_components/jquery/jquery.js',
-						'favicon.ico'
+						'favicon.ico',
+						'post_resources/**/*'
 						//'apple-touch*.png'
 					],
 					dest: '<%= yeoman.dist %>'

@@ -31,5 +31,5 @@ pygments: true
 highlighter: pygments
 
 giturl: https://github.com/AdaRoseEdwards
-pageurl: http://ada.is
+pageurl: /
 pullreq: https://github.com/AdaRoseEdwards/ada.is/tree/master/app/

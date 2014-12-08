@@ -4,12 +4,12 @@ blog_title: Ada Rose Edwards
 title: Ada.is
 ---
 
-<section class="home posts">
+<section class="home-posts">
   {% for post in site.posts %}
-    <article>
+    <div class="home-posts_item">
     	<a class="article-link" href="{{ post.url }}"><h1>{{ post.title }}</h1></a>
-		{{ post.excerpt }}
+		<article>{{ post.excerpt }}</article>
     	<time>{{ post.date | date_to_string }}</time>
-    </article>
+    </div>
   {% endfor %}
 </section>

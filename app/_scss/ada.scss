@@ -24,16 +24,10 @@ h1, h2, h3, h4, h5, h6 {
 	transition: width 600ms ceaser($resizeAnim);
 }
 
-.highlight {
-	padding: 1em;
-}
-
-.gallery-item {
-	float: left;
-	background: $ada-pink;
-	padding: 0.5em;
-	box-shadow: 0.5em 0.5em 0 $shadow;
-	margin: 0.5em 1em 1em 0.5em;
+.center {
+	position: relative;
+	left: 50%;
+	transform: translateX(-50%);
 }
 
 @import "speciallayout";

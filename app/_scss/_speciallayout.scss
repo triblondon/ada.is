@@ -7,6 +7,19 @@ body.special, body.special-index {
 		h1, h2, h3, h4, h5, h6 {
 			border-bottom: 1px solid $shadow;
 		}
+
+		.highlight {
+			padding: 1em;
+		}
+
+		.gallery-item {
+			float: left;
+			background: $ada-pink;
+			padding: 0.5em;
+			box-shadow: 0.5em 0.5em 0 $shadow;
+			margin: 0.5em 1em 1em 0.5em;
+			display: inline;
+		}
 	}
 
 	.row.header {

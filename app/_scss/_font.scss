@@ -147,39 +147,6 @@
 	/* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */
 }
 
-.btn {
-	&[class^="icon-"]:before, &[class*=" icon-"]:before {
-		font-size: 2em;
-		color: $foreground;
-		background: darken($background, 30);
-		border-radius: 0.2em;
-		margin: 0.2em;
-		width: 1.2em;
-		height: 1.2em;
-		padding-top: 0.1em;
-	}
-
-	&.btn.btn-left {
-		position: absolute;
-		left:0;
-		top:0;
-		&:before {
-			margin-left: 0;
-			border-radius: 0 0.2em 0.2em 0;
-		}
-	}
-
-	&.btn.btn-right {
-		position: absolute;
-		right:0;
-		top:0;
-		&:before {
-			margin-right: 0;
-			border-radius: 0.2em 0 0 0.2em;
-		}
-	}
-}
- 
 .icon-spin1:before { content: '\e81f'; } /* '' */
 .icon-mastercard:before { content: '\e816'; } /* '' */
 .icon-spin4:before { content: '\e81c'; } /* '' */

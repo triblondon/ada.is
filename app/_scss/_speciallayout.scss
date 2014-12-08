@@ -21,7 +21,7 @@ body.special, body.special-index {
 body.special-index {
 
 	.container {
-		background: #FFF0F5;
+		background: $ada-pink;
 	}
 
 	@media screen and (orientation: landscape) {
@@ -45,24 +45,21 @@ body.special-index {
 	}
 
 	.home.posts {
-		a.article-link {
+		article {
+			.article-link > h1 {
+				background: $foreground;
+				margin: 0;
+			}
+
 			position: relative;
 			display: block;
 			padding: 0.3em;
-			margin: 0;
-
-			article {
-				margin: 0.2em 0.2em 0.2em -1em;
-				display: block;
-				box-shadow: 1em 1em 0 rgba(darken($background, 50%), 0.2);
-				background: lighten($background, 50%);
-				max-width: 90vw;
-				padding-left: 1em;
-
-				h1 {
-					margin: 0;
-				}
-			}
+			margin: 0 0 2em 0;
+			display: block;
+			box-shadow: 1em 1em 0 rgba(darken($background, 50%), 0.2);
+			background: lighten($foreground, 50%);
+			max-width: 90vw;
+			padding-left: 1em;
 		}
 	}
 }
@@ -137,7 +134,7 @@ body.special {
 	}
 
 	.row.footer {
-		color: lighten($foreground, 50%);
+		color: darken($foreground, 50%);
 		padding: 1em;
 	}
 }

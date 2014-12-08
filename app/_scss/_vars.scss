@@ -14,6 +14,9 @@ $screen-desktop: $screen-md-min;
 $screen-lg-desktop: $screen-lg-min;
 $screen-md-max: ($screen-lg-min - 1px);
 
-$background: #ffffff;
-$foreground: #333333;
-$dark-background: darken($foreground, 80%);
+
+$ada-pink: #FFF0F5;
+$foreground: #FFFFFF;
+$background: darken($ada-pink, 80%);
+$font-color: darken($foreground, 80%);
+$resizeAnim: easeInOutBack;

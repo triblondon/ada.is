@@ -2,14 +2,6 @@
 @import "ceaser-easing";
 @import "hexagons";
 
-$background: #ffffff;
-$foreground: #333333;
-$dark-background: darken($foreground, 80%);
-$leftBoxWidth: 16em;
-$rightBoxWidth:28em;
-$padding: 1em;
-$resizeAnim: easeInOutBack;
-
 @import "font";
 
 html, body, .container, .row {
@@ -20,7 +12,7 @@ html, body, .container, .row {
 	width: 100%;
 	font-family: 'Open Sans', 'sans-serif';
 	font-weight: 400;
-	color: $foreground;
+	color: $font-color;
 }
 
 h1, h2, h3, h4, h5, h6 {

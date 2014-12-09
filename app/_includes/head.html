@@ -8,24 +8,16 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimal-ui" />
 	<meta name="HandheldFriendly" content="true" />
 	<link href='//fonts.googleapis.com/css?family=Open+Sans:300italic,400,300,600,800' rel='stylesheet' type='text/css'>
-	<!-- build:css({app,.tmp}) /css/main.css -->
-	<link rel="stylesheet" href="/css/bootstrap.min.css">
-	<link rel="stylesheet" href="/_bower_components/normalize-css/normalize.css">
-	<link rel="stylesheet" href="/css/ada.css">
-	<link rel="stylesheet" href="/css/syntax.css">
-	<!-- endbuild -->
-	<!-- endbuild -->
 	<!--preload fonts and images so they get pulled down earlier-->
 	<style>
 		body:before {
-			content: url("/img/pattern.svg");
+			content: url("/img/pattern.svg") Preload Fonts;
+			font-family: 'Open Sans', 'sans-serif';
 			display: none;
 		}
-		body:after {
-			content: 'Preload Fonts'
-			font-family: 'Open Sans', 'sans-serif';
-			position: absolute;
-			visibility: hidden;
-		}
 	</style>
+	<!-- build:css({app,.tmp}) /css/main.css -->
+	<link rel="stylesheet" href="/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/css/ada.css">
+	<!-- endbuild -->
 </head>

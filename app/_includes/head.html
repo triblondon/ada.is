@@ -15,4 +15,17 @@
 	<link rel="stylesheet" href="/css/syntax.css">
 	<!-- endbuild -->
 	<!-- endbuild -->
+	<!--preload fonts and images so they get pulled down earlier-->
+	<style>
+		body:before {
+			content: url("/img/pattern.svg");
+			display: none;
+		}
+		body:after {
+			content: 'Preload Fonts'
+			font-family: 'Open Sans', 'sans-serif';
+			position: absolute;
+			visibility: hidden;
+		}
+	</style>
 </head>

@@ -18,6 +18,7 @@ body.special, body.special-index {
 			box-shadow: 0.5em 0.5em 0 $shadow;
 			margin: 0.5em 1em 1em 0.5em;
 			display: inline;
+			max-width: 100%;
 
 			&:nth-of-type(odd) {
 				float:left;
@@ -30,7 +31,7 @@ body.special, body.special-index {
 
 		p:before {
 			content: "";
-			width: 10em;
+			width: 25%;
 			display: block;
 			overflow: hidden;
 			border: red;

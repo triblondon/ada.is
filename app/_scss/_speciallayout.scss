@@ -13,13 +13,29 @@ body.special, body.special-index {
 		}
 
 		.gallery-item {
-			float: left;
 			background: $ada-pink;
 			padding: 0.5em;
 			box-shadow: 0.5em 0.5em 0 $shadow;
 			margin: 0.5em 1em 1em 0.5em;
 			display: inline;
+
+			&:nth-of-type(odd) {
+				float:left;
+			}
+
+			&:nth-of-type(even) {
+				float:right;
+			}
 		}
+
+		p:before {
+			content: "";
+			width: 10em;
+			display: block;
+			overflow: hidden;
+			border: red;
+		}
+
 	}
 
 	.row.header {

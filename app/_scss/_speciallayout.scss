@@ -10,6 +10,8 @@ body.special, body.special-index {
 
 		.highlight {
 			padding: 1em;
+			clear: both;
+			box-shadow: 0.5em 0.5em 0 $shadow;
 		}
 
 		.gallery-item {

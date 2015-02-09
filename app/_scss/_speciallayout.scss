@@ -65,6 +65,10 @@ body.special-index {
 		background: $ada-pink;
 	}
 
+	.row.header .page-title {
+		display: none;
+	}
+
 	@media screen and (orientation: landscape) {
 		.row.header {
 			width: 100vh;

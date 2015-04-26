@@ -20,10 +20,6 @@ h1, h2, h3, h4, h5, h6 {
 	clear: both;
 }
 
-.row > div {
-	transition: width 600ms ceaser($resizeAnim);
-}
-
 .center {
 	position: relative;
 	left: 50%;

@@ -92,8 +92,8 @@ Containment will enforce the styling necasary for the performance whcih means it
 _Note_ Layout Containment is _not_ style containment as in the shadow dom spec.  Style containment stops a custom elements styling affecting other elements; Layout containment is a css property in draft to aid performance by allowing the browser to isolate elements from the rest of the DOM's layout tree.
 
 # References
-http://dev.w3.org/csswg/css-containment/ - Containment Spec
-Fastdom - Library to avoid read/write loop
-http://csstriggers.com/ - CSS Triggers
-https://css-tricks.com/things-chrome-dev-summit-2014/ - Great Paul Lewis talk
-http://lanyrd.com/2015/extwebsummit/ - 2015 Extensible Web Summit.
+* http://dev.w3.org/csswg/css-containment/ - Containment Spec
+* Fastdom - Library to avoid read/write loop
+* http://csstriggers.com/ - CSS Triggers
+* https://css-tricks.com/things-chrome-dev-summit-2014/ - Great Paul Lewis talk
+* http://lanyrd.com/2015/extwebsummit/ - 2015 Extensible Web Summit.

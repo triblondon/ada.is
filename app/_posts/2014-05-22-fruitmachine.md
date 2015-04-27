@@ -50,4 +50,3 @@ I also added browserify and tweaked gulp watch to watch the new directory tree a
 
 You can view the end result at [[http://adaroseedwards.github.io/ft-ada/]](http://adaroseedwards.github.io/ft-ada/)
 
-To do: compile these folders into webcomponents so that the dom looks really lovely and pretty.

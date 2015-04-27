@@ -5,10 +5,9 @@ categories: Blog
 author: Ada Rose Edwards
 ---
 
-##### Status: Draft - Please comment and I will elaborate.
 This project has been cancelled. After some work I realised I was
-reimplemeting ftlabs's fruitmachine
-. The next post will be an introduction to fruitmachine and some useful helpers.
+reimplemeting ftlabs's fruitmachine.
+The next post will be an introduction to fruitmachine and some useful helpers.
 I will look into creating a web-component fruitmachine helper. 
 
 This project explores progressive enhancement, web components, spdy and a few other bits and bobs.

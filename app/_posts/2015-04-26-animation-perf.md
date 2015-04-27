@@ -7,7 +7,10 @@ author: Ada Rose Edwards
 
 On Monday 20/04/2015 I gave a ligtning talk at the extensible on animation performance in the browser.
 These are the notes from the talk prose-ified.  
-[link to the talk](https://www.1am.club/~ada/ews-slides/) notes are shown on small screen, slides on large screen.
+[link to the talk](https://www.1am.club/~ada/ews-slides/). Talk notes are displayed on mobile, has a bug doesn't work on iOS.
+
+<blockquote class="twitter-tweet" lang="en"><p>Just saw <a href="https://twitter.com/slightlylate">@slightlylate</a> and <a href="https://twitter.com/timberners_lee">@timberners_lee</a> here, trying to not panic.</p>&mdash; Ada Rose Edwards ♥ (@Lady_Ada_King) <a href="https://twitter.com/Lady_Ada_King/status/590189790248587264">April 20, 2015</a></blockquote>
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 
 ----
 
@@ -32,6 +35,17 @@ Writing to DOM is free, you can write as much as you want.
 Once the DOM is read if it has been invalidated it needs to be recalculated which is expensive.
 One common problem is reading then writing in a loop which is known as thrashing the DOM; the layout is invalidated and recalculated on every single read.
 Interleaving reads and writes could mean multiple layout operations per frame
+
+{% highlight js %}
+el.height = (myVar + 1) + "px"
+myVar = el.clientHeight;
+el.height = (myVar + 1) + "px"
+myVar = el.clientHeight;
+el.height = (myVar + 1) + "px"
+myVar = el.clientHeight;
+el.height = (myVar + 1) + "px"
+myVar = el.clientHeight;
+{% endhighlight %}
 
 Animating properties which cause layouts on the DOM will trigger a layout on every frame. In the slides I've put in some examples of bad practise where I naively do css animations on the width property.
 
@@ -58,6 +72,10 @@ this method follows up from a great talk given by Paul Lewis ([@aerotwist](https
 
 (Next example in the slides follows this through step by step)
 
+
+<blockquote class="twitter-tweet" lang="en"><p>This is the code for the smooth layout demo: <a href="https://t.co/fgWeP4DhrG">https://t.co/fgWeP4DhrG</a> <a href="https://twitter.com/hashtag/extwebsummit?src=hash">#extwebsummit</a> apolgies for the jQuery I wrote it in a hurry.</p>&mdash; Ada Rose Edwards ♥ (@Lady_Ada_King) <a href="https://twitter.com/Lady_Ada_King/status/590200595086082049">April 20, 2015</a></blockquote>
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
 * Measure every element we want to animate.
 * store the current animation so it can be restored later set it to ‘0s’
 * store the current transform so it can be restored later
@@ -74,7 +92,7 @@ this method follows up from a great talk given by Paul Lewis ([@aerotwist](https
 * restore the transitions
 * fire any callbacks
 
-### Layout Boundaries
+### Layout Boundaries and Containment
 
 Even though this modal [(Slide 4)](https://www.1am.club/~ada/ews-slides/#slide-4) looks isolated the browser may still relayout the whole Dom
 but we can seperate it's DOM invalidation from the rest of the page.
@@ -82,6 +100,16 @@ Doing so doesn't accelerate the animation but it does make the layout change les
 
 There is a draft css spec called [containment](http://dev.w3.org/csswg/css-containment/) which will hint to the browser in much the same way as the will-change property that this element will not affect the rest of the DOM tree.
 It requires cerain properties such as no scrolling and fixed dimensions.
+
+{% highlight css %}
+{
+    height: <fixed value>;
+    width: <fixed value or a %>;
+    overflow: hidden;
+    position: absolute;
+    contain: strict; // In draft
+}
+{% endhighlight %}
 
 Containment could be done in browsers previouly but it relied on the element having certain properties before it would have layout boundaries such as a fixed height and no scroll and relied upon the browser's implementation.
 

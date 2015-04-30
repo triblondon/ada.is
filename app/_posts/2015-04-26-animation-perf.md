@@ -84,6 +84,9 @@ This method follows up from a great talk given by Paul Lewis ([@aerotwist](https
 <blockquote class="twitter-tweet" lang="en"><p>This is the code for the smooth layout demo: <a href="https://t.co/fgWeP4DhrG">https://t.co/fgWeP4DhrG</a> <a href="https://twitter.com/hashtag/extwebsummit?src=hash">#extwebsummit</a> apolgies for the jQuery I wrote it in a hurry.</p>&mdash; Ada Rose Edwards ♥ (@Lady_Ada_King) <a href="https://twitter.com/Lady_Ada_King/status/590200595086082049">April 20, 2015</a></blockquote>
 <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 
+### Note:
+ [This is a follow up post](/blog/2015/04/29/animation-perf-follow-up/) to this since this doesn't work that well in all situations which fixes the issue with animating nested scale transforms with css transitions.
+
 * Measure every element we want to animate.
 * Store the current animation so it can be restored later set it to ‘0s’
 * Store the current transform so it can be restored later

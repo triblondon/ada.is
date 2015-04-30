@@ -9,13 +9,13 @@
 	<meta name="HandheldFriendly" content="true" />
 	<meta name="twitter:card" content="summary" />
 	<meta name="twitter:site" content="@lady_ada_king" />
-	{% if page.title %}
-		<meta name="twitter:title" content="{{ page.title }} by {{ page.author }} on {{ site.pageurl }}" />
-		<meta name="twitter:description" content="{{ page.excerpt }}" />
+	{% if page.author %}
+		<meta name="twitter:title" content="{{ page.title }} by {{ page.author }}" />
+		<meta name="twitter:description" content="{{ page.excerpt  | strip_html }}" />
 		<meta name="twitter:url" content="{{ page.url }}" />
 	{% else %}
 		<meta name="twitter:title" content="{{ site.name }}" />
-		<meta name="twitter:description" content="{{ site.description }}" />
+		<meta name="twitter:description" content="{{ site.description}}" />
 		<meta name="twitter:url" content="{{ page.url }}" />
 	{% endif %}
 	<link href='//fonts.googleapis.com/css?family=Open+Sans:300italic,400,300,600,800' rel='stylesheet' type='text/css'>

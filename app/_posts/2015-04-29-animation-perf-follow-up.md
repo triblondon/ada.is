@@ -7,14 +7,13 @@ author: Ada Rose Edwards
 
 I and someone from slack tried implementing an accordion with the techniques discussed in my [previous post](/blog/2015/04/26/animation-perf/).
 
-This did not work as expected it had a kind of bouncy effect. This seems to be especially noticable in this case because the change of height is very large.
+This did not work as expected. It had a kind of bouncy effect. This seems to be especially noticable in the accordion case because the change of height is very large.
 
 Example:
 
-<iframe seamless="true" frameborder="0" width="100%" height="200px" src="http://jsbin.com/becudutuxe/4/embed?output"><a href="http://jsbin.com/becudutuxe/4/embed?output">http://jsbin.com/becudutuxe/4/embed?output</a></iframe>
-<a href="http://jsbin.com/becudutuxe/4/embed?output">http://jsbin.com/becudutuxe/4/embed?output</a>
+<a href="http://jsbin.com/becudutuxe/4/embed?output" target="_blank">http://jsbin.com/becudutuxe/4/embed?output</a>
 
-The reason for this error is thatas the transition progresses, from the start (`t=1`) to the end (`t=0`), I had made the assumption that at `t=0.5` the shrinking element would be as proportionally small as the growing one is large.
+The reason for this error is that as the transition progresses, from the start (`t=1`) to the end (`t=0`), I had made the assumption that at `t=0.5` the shrinking element would be as proportionally small as the growing one is large.
 
 This is not the case. To illustrate this with an example.
 
@@ -28,7 +27,7 @@ In order to maintain the scale of the child elements the product of the scaleY o
 | `5 × 0.2 = 1` ✓ | `3 × 0.6 = 1.8` X | `1 × 1 = 1` ✓ |
 ```
 
-In the middle it's too large because the inner element should not scale linearly but inversely. My naive initial attempt was to reproduce the inverse curve as an easing function. This was very flaky and would not match exactly. It also required a different curve for shrinking and growing. It would also vary depending on both the start and end values.
+In the middle it's too large because the inner element should not scale anti-linearly but scaled inversely. My naive initial attempt was to reproduce the inverse curve as an easing function. This was very flaky and would not match exactly. It also required a different curve for shrinking and growing. It would also vary depending on both the start and end values.
 
 What I did instead was to tween the scale in javascript using request animation frame and apply the inverse scale to the children. This worked marvelously.
 

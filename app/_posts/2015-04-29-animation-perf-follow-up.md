@@ -11,7 +11,7 @@ This did not work as expected it had a kind of bouncy effect. This seems to be e
 
 Example:
 
-<a class="jsbin-embed" href="http://jsbin.com/becudutuxe/4/embed?output">JS Bin</a><script src="http://static.jsbin.com/js/embed.js"></script>
+<iframe seamless="true" border="none" width="100%" height="400px" src="http://jsbin.com/becudutuxe/4/embed?output"><a href="http://jsbin.com/becudutuxe/4/embed?output">http://jsbin.com/becudutuxe/4/embed?output</a></iframe>
 
 The reason for this error is thatas the transition progresses, from the start (`t=1`) to the end (`t=0`), I had made the assumption that at `t=0.5` the shrinking element would be as proportionally small as the growing one is large.
 

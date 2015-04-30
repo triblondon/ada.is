@@ -5,7 +5,7 @@ categories: Blog
 author: Ada Rose Edwards
 ---
 
-I and someone else from social media tried implementing an accordion with the techniques discussed in my [previous post](/blog/2015/04/26/animation-perf/).
+I and someone from slack tried implementing an accordion with the techniques discussed in my [previous post](/blog/2015/04/26/animation-perf/).
 
 This did not work as expected it had a kind of bouncy effect. This seems to be especially noticable in this case because the change of height is very large.
 

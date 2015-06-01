@@ -45,6 +45,10 @@ body.special, body.special-index {
 		background: url("/img/pattern.svg");
 		background-size: cover;
 		padding: 1em;
+
+		// Compensate for the page height changing on url hide.
+		// BAD: Causes reflow
+		transition: height 0.1s ease, width 0.1s ease;
 	}
 
 	.hero {
@@ -56,6 +60,9 @@ body.special, body.special-index {
 		font-style: italic;
 		font-weight: 300;
 		font-size: 1.5em;
+
+		// Allow for it to go onto 2 rows.
+		height: 2em;
 	}
 }
 
@@ -78,6 +85,9 @@ body.special-index {
 
 		.home-posts {
 			margin-left: calc(100vh - 100vw);
+
+			// BAD: Causes reflow
+			transition: margin 0.1s ease;
 			padding-left: 1em;
 		}
 	}

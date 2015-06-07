@@ -3,10 +3,9 @@
 var resources = [
 	'/favicon.ico',
 	'/img/pattern.svg',
+	'/css/main.css',
+	'/js/script.js',
 	'https://fonts.googleapis.com/css?family=Open+Sans:300italic,400,300,600,800',
-	'/css/bootstrap.min.css',
-	'/js/main.js',
-	'/css/ada.css',
 
 	'/',
 	'/index.html'

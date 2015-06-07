@@ -44,6 +44,7 @@ module.exports = function (grunt) {
 					'.jekyll/**/*.html',
 					'{.tmp,<%= yeoman.app %>}/css/**/*.css',
 					'{.tmp,<%= yeoman.app %>}/<%= js %>/**/*.js',
+					'{.tmp,<%= yeoman.app %>}/sw.js',
 					'<%= yeoman.app %>/img/**/*.{gif,jpg,jpeg,png,svg,webp}'
 				]
 			}
@@ -236,7 +237,8 @@ module.exports = function (grunt) {
 						// Explicitly add any files your site needs for distribution here.
 						//'_bower_components/jquery/jquery.js',
 						'favicon.ico',
-						'post_resources/**/*'
+						'post_resources/**/*',
+						'sw.js'
 						//'apple-touch*.png'
 					],
 					dest: '<%= yeoman.dist %>'
@@ -262,6 +264,7 @@ module.exports = function (grunt) {
 			all: [
 				'Gruntfile.js',
 				'<%= yeoman.app %>/js/**/*.js',
+				'<%= yeoman.app %>/sw.js',
 				'test/spec/**/*.js'
 			]
 		},

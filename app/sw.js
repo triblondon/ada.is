@@ -28,9 +28,25 @@ self.addEventListener('install', function(event) {
 });
 
 self.addEventListener('message', function(event) {
-	event.ports[0].postMessage({
-		message: 'Hello'
-	});
+	if (event.data.action === "STORE_ALL") caches.open('resources-v1')
+		.then(function(cache) {
+			return JSON.parse(event.data.urls).map(function (url) {
+				console.log('Caching: ' + url);
+				return cache.add(new Request(url, url.match(/^https?:/) ? {mode: 'no-cors'} : {}));
+			});
+		})
+		.then(function (urlPromises) {
+			return Promise.all(urlPromises);
+		})
+		.then(function () {
+			event.data.success = true;
+		}, function (err) {
+			console.log(err);
+			event.data.success = false;
+		})
+		.then(function () {
+			event.ports[0].postMessage(event.data);
+		});
 });
 
 self.addEventListener('fetch', function(event) {
@@ -43,7 +59,7 @@ self.addEventListener('fetch', function(event) {
 				caches.open('resources-v1')
 					.then(function(cache) {
 						console.log('Updating: ' + event.request.url);
-						return cache.add(event.request, event.request.url.match(/^https?:/) ? {mode: 'no-cors'} : {});
+						return cache.add(event.request, {mode: 'no-cors'});
 					})
 					.then(function () {
 						return event.currentTarget.clients.matchAll({type: "window"});

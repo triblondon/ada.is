@@ -1,8 +1,8 @@
 ---
 layout: post
-title:  "SW Test "
+title:  "One third speed up through Service Worker"
 categories: Blog
 author: Ada Rose Edwards
 ---
 
-Service Worker Changed 10!
+Blog imminent..

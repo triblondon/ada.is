@@ -1,3 +1,19 @@
+function fetchAndReplace(url) {
+	if (!window.fetch) {
+		return location.assign(url);
+	}
+	fetch(url)
+		.then(function(response) {
+			return response.text();
+		})
+		.then(function(body) {
+			var htmlDoc = (new DOMParser()).parseFromString(body, "text/html");
+			document.body = htmlDoc.body;
+		})
+		.catch(function () {
+			location.assign(url);
+		});
+}
 
 (function () {
 	function sendSWMessage(message) {
@@ -47,7 +63,8 @@
 		window.addEventListener('message', function (e) {
 			if( e.data.action === "ASSET_REFRESHED") {
 				if (e.data.url === location.toString()) {
-					location.reload();
+					console.log('Refreshing ' + e.data.url);
+					fetchAndReplace(e.data.url);
 				}
 			}
 		});

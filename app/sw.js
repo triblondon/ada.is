@@ -1,4 +1,68 @@
-/* global caches, fetch, Request, self */
+/* global Cache, caches, fetch, Request, self */
+
+// Inline Cache polyfill
+if (!Cache.prototype.add) {
+  Cache.prototype.add = function add(request) {
+    return this.addAll([request]);
+  };
+}
+
+if (!Cache.prototype.addAll) {
+  Cache.prototype.addAll = function addAll(requests) {
+    var cache = this;
+
+    // Since DOMExceptions are not constructable:
+    function NetworkError(message) {
+      this.name = 'NetworkError';
+      this.code = 19;
+      this.message = message;
+    }
+    NetworkError.prototype = Object.create(Error.prototype);
+
+    return Promise.resolve().then(function() {
+      if (arguments.length < 1) throw new TypeError();
+
+      requests = requests.map(function(request) {
+        if (request instanceof Request) {
+          return request;
+        }
+        else {
+          return String(request); // may throw TypeError
+        }
+      });
+
+      return Promise.all(
+        requests.map(function(request) {
+          if (typeof request === 'string') {
+            request = new Request(request);
+          }
+
+          var scheme = new URL(request.url).protocol;
+
+          if (scheme !== 'http:' && scheme !== 'https:') {
+            throw new NetworkError("Invalid scheme");
+          }
+
+          return fetch(request.clone());
+        })
+      );
+    }).then(function(responses) {
+      // TODO: check that requests don't overwrite one another
+      // (don't think this is possible to polyfill due to opaque responses)
+      return Promise.all(
+        responses.map(function(response, i) {
+          return cache.put(requests[i], response);
+        })
+      );
+    }).then(function() {
+      return undefined;
+    });
+  };
+}
+
+function isLocal(url) {
+	return !!url.match(new RegExp('^' + location.protocol + "//" + location.host));
+}
 
 var resources = [
 	'/favicon.ico',
@@ -11,7 +75,7 @@ var resources = [
 	'/index.html'
 ];
 
-var cacheSellByTime = 30 * 1000;
+var cacheSellByTime = 3600 * 1000;
 
 self.addEventListener('install', function(event) {
 	console.log('Installing service worker');
@@ -20,7 +84,7 @@ self.addEventListener('install', function(event) {
 		caches.open('resources-v1')
 			.then(function(cache) {
 				resources.forEach(function (item) {
-					cache.add(new Request(item, item.match(/^https?:/) ? {mode: 'no-cors'} : {}));
+					cache.add(new Request(item, isLocal(item) ? {mode: 'no-cors'} : {}));
 				});
 			})
 	);
@@ -31,7 +95,7 @@ self.addEventListener('message', function(event) {
 		.then(function(cache) {
 			return JSON.parse(event.data.urls).map(function (url) {
 				console.log('Caching: ' + url);
-				return cache.add(new Request(url, url.match(/^https?:/) ? {mode: 'no-cors'} : {}));
+				return cache.add(new Request(url, isLocal(url) ? {mode: 'no-cors'} : {}));
 			});
 		})
 		.then(function (urlPromises) {
@@ -53,12 +117,12 @@ self.addEventListener('fetch', function(event) {
 		.then(function(r) {
 			var age = Date.now() - (new Date(r.headers.get('Date')).getTime());
 
-			// Update cached if it is more than 1 hour old and is not cors
+			// Update cached if it is more than 1 hour old
 			if (r.headers.get('Date') && age > cacheSellByTime) {
 				caches.open('resources-v1')
 					.then(function(cache) {
 						console.log('Updating: ' + event.request.url);
-						return cache.add(event.request, {mode: 'no-cors'});
+						return cache.add(event.request);
 					})
 					.then(function () {
 						return event.currentTarget.clients.matchAll({type: "window"});

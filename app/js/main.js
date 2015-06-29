@@ -82,7 +82,14 @@ function fetchAndReplace(url, selector) {
 		.map(function (i) {
 			return i.toString();
 		});
-		storeStaticResources(localUrls);
+		return storeStaticResources(localUrls)
+			.then(function (result) {
+				if (result.success) {
+					console.log('Successfully cached resources');
+				} else {
+					console.log('Some resourcecs failed to cache');
+				}
+			});
 	}
 
 	if ('serviceWorker' in navigator) {

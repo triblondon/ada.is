@@ -75,7 +75,17 @@ var resources = [
 	'/index.html'
 ];
 
-var cacheSellByTime = 3600 * 1000;
+// Send a signal to all connected windows.
+function reply(event) {
+	return event.currentTarget.clients.matchAll({type: "window"})
+		.then(function (windows) {
+			windows.forEach(function (w) {
+				w.postMessage(event.data);
+			});
+		});
+}
+
+var cacheSellByTime = 1000 * 5;
 
 self.addEventListener('install', function(event) {
 	console.log('Installing service worker');
@@ -125,16 +135,13 @@ self.addEventListener('fetch', function(event) {
 						return cache.add(event.request);
 					})
 					.then(function () {
-						return event.currentTarget.clients.matchAll({type: "window"});
+						event.data = {
+							action: "ASSET_REFRESHED",
+							url: event.request.url
+						};
+						return event;
 					})
-					.then(function (windows) {
-						windows.forEach(function (w) {
-							w.postMessage({
-								action: "ASSET_REFRESHED",
-								url: event.request.url
-							});
-						});
-					});
+					.then(reply);
 			}
 			return r;
 		})

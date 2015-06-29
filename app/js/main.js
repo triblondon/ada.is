@@ -1,4 +1,5 @@
-/* global $ */
+/* global NodeList, $ */
+/* jshint proto:true */
 
 window.$ = document.querySelectorAll.bind(document);
 

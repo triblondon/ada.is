@@ -4,7 +4,7 @@
 window.$ = document.querySelectorAll.bind(document);
 
 Node.prototype.on = window.on = function (name, fn) {
-  this.addEventListener(name, fn);
+  this.addEventListener(name, fn.bind(this));
 };
 
 NodeList.prototype.__proto__ = Array.prototype;
@@ -90,6 +90,7 @@ function fetchAndReplace(url, selector) {
 				} else {
 					console.log('Some resourcecs failed to cache');
 				}
+				return result;
 			});
 	}
 
@@ -115,7 +116,13 @@ function fetchAndReplace(url, selector) {
 			window.storeStaticResources = storeStaticResources;
 			console.log('Offlining Available');
 			$('.hero-offline')[0].style.display = "inline";
-			$('.hero-offline a').on('click', offlineLocalLinks);
+			$('.hero-offline a').on('click', function () {
+				this.innerHTML = 'Caching';
+				offlineLocalLinks()
+				.then(function (data) {
+					this.innerHTML = data.success ? 'Cached' : 'Failed to Cache';
+				}.bind(this));
+			});
 		}
 	}
 

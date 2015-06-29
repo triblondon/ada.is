@@ -76,7 +76,7 @@ var resources = [
 	'/index.html'
 ];
 
-var cacheSellByTime = 1000 * 5;
+var cacheSellByTime = 1000 * 60 * 60;
 
 // Send a signal to all connected windows.
 function reply(event) {

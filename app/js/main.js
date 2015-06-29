@@ -1,4 +1,21 @@
-function fetchAndReplace(url) {
+/* global $ */
+
+window.$ = document.querySelectorAll.bind(document);
+
+Node.prototype.on = window.on = function (name, fn) {
+  this.addEventListener(name, fn);
+};
+
+NodeList.prototype.__proto__ = Array.prototype;
+
+NodeList.prototype.on = NodeList.prototype.addEventListener = function (name, fn) {
+  this.forEach(function (elem) {
+    elem.on(name, fn);
+  });
+};
+
+function fetchAndReplace(url, selector) {
+
 	if (!window.fetch) {
 		return location.assign(url);
 	}
@@ -8,7 +25,12 @@ function fetchAndReplace(url) {
 		})
 		.then(function(body) {
 			var htmlDoc = (new DOMParser()).parseFromString(body, "text/html");
-			document.body = htmlDoc.body;
+			var replacer = htmlDoc.querySelectorAll(selector);
+			var toReplace = $(selector).slice(0, replacer.length);
+			toReplace.forEach(function (el, i) {
+				el.parentNode.replaceChild(replacer[i], el);
+			});
+			return replacer;
 		})
 		.catch(function () {
 			location.assign(url);
@@ -52,6 +74,17 @@ function fetchAndReplace(url) {
 			});
 	}
 
+	function offlineLocalLinks() {
+		var localUrls = $('a')
+		.filter(function (i) {
+			return i.hostname === location.hostname;
+		})
+		.map(function (i) {
+			return i.toString();
+		});
+		storeStaticResources(localUrls);
+	}
+
 	if ('serviceWorker' in navigator) {
 		navigator.serviceWorker.register('/sw.js', { scope: '/' })
 			.then(function(reg) {
@@ -64,17 +97,19 @@ function fetchAndReplace(url) {
 			if( e.data.action === "ASSET_REFRESHED") {
 				if (e.data.url === location.toString()) {
 					console.log('Refreshing ' + e.data.url);
-					fetchAndReplace(e.data.url);
+					fetchAndReplace(e.data.url, 'body');
 				}
 			}
 		});
 
-		if (navigator.serviceWorker.controller && window.optionalStaticFilesToCache) {
+		if (navigator.serviceWorker.controller) {
+			window.offlineLocalLinks = offlineLocalLinks;
 			window.storeStaticResources = storeStaticResources;
+			console.log('Offlining Available');
 		}
 	}
 
-	Array.prototype.slice.call(document.body.getElementsByTagName('video')).forEach(function (video) {
+	$('video').forEach(function (video) {
 		video.preload = 'none';
 		video.autoplay = false;
 		video.src = video.dataset.src;

@@ -113,6 +113,8 @@ function fetchAndReplace(url, selector) {
 			window.offlineLocalLinks = offlineLocalLinks;
 			window.storeStaticResources = storeStaticResources;
 			console.log('Offlining Available');
+			$('.hero-offline')[0].style.display = "inline";
+			$('.hero-offline a').on('click', offlineLocalLinks);
 		}
 	}
 

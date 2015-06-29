@@ -60,6 +60,11 @@ body.special, body.special-index {
 		// Allow for it to go onto 2 rows.
 		height: 2em;
 	}
+
+	.hero-offline {
+		white-space: nowrap;
+		display: none;
+	}
 }
 
 body.special-index {

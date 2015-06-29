@@ -70,10 +70,13 @@ var resources = [
 	'/css/main.css',
 	'/js/script.js',
 	'https://fonts.googleapis.com/css?family=Open+Sans:300italic,400,300,600,800',
+	'https://s.gravatar.com/avatar/e137ba0321f12ecb5340680815b42c26?s=400',
 
 	'/',
 	'/index.html'
 ];
+
+var cacheSellByTime = 1000 * 5;
 
 // Send a signal to all connected windows.
 function reply(event) {
@@ -85,11 +88,9 @@ function reply(event) {
 		});
 }
 
-var cacheSellByTime = 1000 * 5;
-
 self.addEventListener('install', function(event) {
 	console.log('Installing service worker');
-
+	if (typeof event.replace !== "undefined") event.replace();
 	event.waitUntil(
 		caches.open('resources-v1')
 			.then(function(cache) {

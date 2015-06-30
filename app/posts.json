@@ -8,7 +8,7 @@ title : JSON
   "author": "{{ site.author.name }}",
   "posts": [{% for post in site.posts %}
     {
-      "url": "{{ site.pageurl }}{{ post.url }}",
+      "url": "{{ post.url }}",
       "slug": "{{ post.id | remove:'/' }}",
       "title": "{{ post.title }}",
       "published_on": "{{ post.date }}",

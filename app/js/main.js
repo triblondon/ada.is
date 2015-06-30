@@ -123,7 +123,7 @@ function fetchAndReplace(url, selector) {
 			$('.hero-offline')[0].style.display = "inline";
 			$('.hero-offline a').on('click', function () {
 				this.innerHTML = 'Caching';
-				offlineLocalLinks()
+				(window.offlineLinks ? storeStaticResources(window.offlineLinks) : offlineLocalLinks())
 				.then(function (data) {
 					this.innerHTML = data.success ? 'Cached' : 'Failed to Cache';
 				}.bind(this));

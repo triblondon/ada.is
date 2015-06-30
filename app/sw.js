@@ -1,6 +1,6 @@
 /* global Cache, caches, fetch, Request, self */
 
-var RESOURCES_CACHE_NAME = 'resources_cache_v2';
+var RESOURCES_CACHE_NAME = 'resources_cache_v3';
 
 // Inline Cache polyfill
 if (!Cache.prototype.add) {

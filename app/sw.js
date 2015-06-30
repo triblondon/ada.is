@@ -1,5 +1,7 @@
 /* global Cache, caches, fetch, Request, self */
 
+var RESOURCES_CACHE_NAME = 'resources_cache_v2';
+
 // Inline Cache polyfill
 if (!Cache.prototype.add) {
   Cache.prototype.add = function add(request) {
@@ -92,7 +94,7 @@ self.addEventListener('install', function(event) {
 	console.log('Installing service worker');
 	if (typeof event.replace !== "undefined") event.replace();
 	event.waitUntil(
-		caches.open('resources-v1')
+		caches.open(RESOURCES_CACHE_NAME)
 			.then(function(cache) {
 				resources.forEach(function (item) {
 					cache.add(new Request(item, isLocal(item) ? {mode: 'no-cors'} : {}));
@@ -102,7 +104,7 @@ self.addEventListener('install', function(event) {
 });
 
 self.addEventListener('message', function(event) {
-	if (event.data.action === "STORE_ALL") caches.open('resources-v1')
+	if (event.data.action === "STORE_ALL") caches.open(RESOURCES_CACHE_NAME)
 		.then(function(cache) {
 			return JSON.parse(event.data.urls).map(function (url) {
 				console.log('Caching: ' + url);
@@ -130,7 +132,7 @@ self.addEventListener('fetch', function(event) {
 
 			// Update cached if it is more than 1 hour old
 			if (r.headers.get('Date') && age > cacheSellByTime) {
-				caches.open('resources-v1')
+				caches.open(RESOURCES_CACHE_NAME)
 					.then(function(cache) {
 						console.log('Updating: ' + event.request.url);
 						return cache.add(event.request);
@@ -150,7 +152,7 @@ self.addEventListener('fetch', function(event) {
 			return fetch(event.request);
 		})
 		.then(function (fetchResponse) {
-			caches.open('resources-v1').then(function(cache) {
+			caches.open(RESOURCES_CACHE_NAME).then(function(cache) {
 				cache.put(event.request, fetchResponse);
 			});
 			return fetchResponse.clone();

@@ -78,7 +78,12 @@ function fetchAndReplace(url, selector) {
 	function offlineLocalLinks() {
 		var localUrls = $('a')
 		.filter(function (i) {
-			return i.hostname === location.hostname;
+			return (
+
+				// Cache all https local resources
+				i.hostname === location.hostname &&
+				i.protocol === 'https'
+			);
 		})
 		.map(function (i) {
 			return i.toString();

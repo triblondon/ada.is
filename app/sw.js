@@ -1,69 +1,72 @@
 /* global Cache, caches, fetch, Request, self */
+/* jshint browser:true */
 
 var RESOURCES_CACHE_NAME = 'resources_cache_v3';
 
+var CACHE_MAX_AGE = 1000 * 60 * 60;
+
 // Inline Cache polyfill
 if (!Cache.prototype.add) {
-  Cache.prototype.add = function add(request) {
-    return this.addAll([request]);
-  };
+	Cache.prototype.add = function add(request) {
+		return this.addAll([request]);
+	};
 }
 
 if (!Cache.prototype.addAll) {
-  Cache.prototype.addAll = function addAll(requests) {
-    var cache = this;
+	Cache.prototype.addAll = function addAll(requests) {
+		var cache = this;
 
-    // Since DOMExceptions are not constructable:
-    function NetworkError(message) {
-      this.name = 'NetworkError';
-      this.code = 19;
-      this.message = message;
-    }
-    NetworkError.prototype = Object.create(Error.prototype);
+		// Since DOMExceptions are not constructable:
+		function NetworkError(message) {
+			this.name = 'NetworkError';
+			this.code = 19;
+			this.message = message;
+		}
+		NetworkError.prototype = Object.create(Error.prototype);
 
-    return Promise.resolve().then(function() {
-      if (arguments.length < 1) throw new TypeError();
+		return Promise.resolve().then(function() {
+			if (arguments.length < 1) throw new TypeError();
 
-      requests = requests.map(function(request) {
-        if (request instanceof Request) {
-          return request;
-        }
-        else {
-          return String(request); // may throw TypeError
-        }
-      });
+			requests = requests.map(function(request) {
+				if (request instanceof Request) {
+					return request;
+				}
+				else {
+					return String(request); // may throw TypeError
+				}
+			});
 
-      return Promise.all(
-        requests.map(function(request) {
-          if (typeof request === 'string') {
-            request = new Request(request);
-          }
+			return Promise.all(
+				requests.map(function(request) {
+					if (typeof request === 'string') {
+						request = new Request(request);
+					}
 
-          var scheme = new URL(request.url).protocol;
+					var scheme = new URL(request.url).protocol;
 
-          if (scheme !== 'http:' && scheme !== 'https:') {
-            throw new NetworkError("Invalid scheme");
-          }
+					if (scheme !== 'http:' && scheme !== 'https:') {
+						throw new NetworkError("Invalid scheme");
+					}
 
-          return fetch(request.clone());
-        })
-      );
-    }).then(function(responses) {
-      // TODO: check that requests don't overwrite one another
-      // (don't think this is possible to polyfill due to opaque responses)
-      return Promise.all(
-        responses.map(function(response, i) {
-          return cache.put(requests[i], response);
-        })
-      );
-    }).then(function() {
-      return undefined;
-    });
-  };
+					return fetch(request.clone());
+				})
+			);
+		}).then(function(responses) {
+			// TODO: check that requests don't overwrite one another
+			// (don't think this is possible to polyfill due to opaque responses)
+			return Promise.all(
+				responses.map(function(response, i) {
+					return cache.put(requests[i], response);
+				})
+			);
+		}).then(function() {
+			return undefined;
+		});
+	};
 }
 
 function isLocal(url) {
-	return !!url.match(new RegExp('^' + location.protocol + "//" + location.host));
+	return (new URL(url).host === location.host);
 }
 
 var resources = [
@@ -77,8 +80,6 @@ var resources = [
 	'/',
 	'/index.html'
 ];
-
-var cacheSellByTime = 1000 * 60 * 60;
 
 // Send a signal to all connected windows.
 function reply(event) {
@@ -103,22 +104,34 @@ self.addEventListener('install', function(event) {
 	);
 });
 
+// Recieve messages from the client and reply back onthe same port
 self.addEventListener('message', function(event) {
-	if (event.data.action === "STORE_ALL") caches.open(RESOURCES_CACHE_NAME)
-		.then(function(cache) {
-			return JSON.parse(event.data.urls).map(function (url) {
-				console.log('Caching: ' + url);
-				return cache.add(new Request(url, isLocal(url) ? {mode: 'no-cors'} : {}));
-			});
-		})
-		.then(function (urlPromises) {
-			return Promise.all(urlPromises);
+		Promise.resolve()
+		.then(function () {
+
+			if (event.data.action === "STORE_ALL") {
+				return caches.open(RESOURCES_CACHE_NAME)
+					.then(function(cache) {
+						return JSON.parse(event.data.urls).map(function (url) {
+							console.log('Caching: ' + url);
+							return cache.add(new Request(url, isLocal(url) ? {mode: 'no-cors'} : {}));
+						});
+					})
+					.then(function (urlPromises) {
+						return Promise.all(urlPromises);
+					});
+			}
+
+			throw Error('Invalid Action');
 		})
 		.then(function () {
 			event.data.success = true;
 		}, function (err) {
 			console.log(err);
 			event.data.success = false;
+			if (err) {
+				event.data.message = err.message ? err.message : err;
+			}
 		})
 		.then(function () {
 			event.ports[0].postMessage(event.data);
@@ -131,7 +144,7 @@ self.addEventListener('fetch', function(event) {
 			var age = Date.now() - (new Date(r.headers.get('Date')).getTime());
 
 			// Update cached if it is more than 1 hour old
-			if (r.headers.get('Date') && age > cacheSellByTime) {
+			if (r.headers.get('Date') && age > CACHE_MAX_AGE) {
 				caches.open(RESOURCES_CACHE_NAME)
 					.then(function(cache) {
 						console.log('Updating: ' + event.request.url);

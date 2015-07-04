@@ -25,9 +25,9 @@ function fetchAndReplace(url, selector) {
 			return response.text();
 		})
 		.then(function(body) {
-			var htmlDoc = (new DOMParser()).parseFromString(body, "text/html");
-			var replacer = htmlDoc.querySelectorAll(selector);
-			var toReplace = $(selector).slice(0, replacer.length);
+			const htmlDoc = (new DOMParser()).parseFromString(body, "text/html");
+			const replacer = htmlDoc.querySelectorAll(selector);
+			const toReplace = $(selector).slice(0, replacer.length);
 			toReplace.forEach(function (el, i) {
 				el.parentNode.replaceChild(replacer[i], el);
 			});
@@ -46,7 +46,7 @@ function fetchAndReplace(url, selector) {
 		// controller.postMessage() and set up the onmessage handler independently of a promise, but this is
 		// a convenient wrapper.
 		return new Promise(function(resolve, reject) {
-			var messageChannel = new MessageChannel();
+			const messageChannel = new MessageChannel();
 			messageChannel.port1.onmessage = function(event) {
 				if (event.data.error) {
 					reject(event.data.error);
@@ -65,8 +65,8 @@ function fetchAndReplace(url, selector) {
 
 	function storeStaticResources(staticResources) {
 
-		var action = "STORE_ALL";
-		var id = action + "_" + Date.now();
+		const action = "STORE_ALL";
+		const id = action + "_" + Date.now();
 
 		return sendSWMessage({
 				action: action,
@@ -76,18 +76,19 @@ function fetchAndReplace(url, selector) {
 	}
 
 	function offlineLocalLinks() {
-		var localUrls = $('a')
-		.filter(function (i) {
-			return (
+		const localUrls = $('a')
+			.filter(function (i) {
+				return (
 
-				// Cache all https local resources
-				i.hostname === location.hostname &&
-				i.protocol === 'https'
-			);
-		})
-		.map(function (i) {
-			return i.toString();
-		});
+					// Cache all https local resources
+					i.hostname === location.hostname &&
+					i.protocol === 'https'
+				);
+			})
+			.map(function (i) {
+				return i.toString();
+			});
+
 		return storeStaticResources(localUrls)
 			.then(function (result) {
 				if (result.success) {
@@ -131,10 +132,11 @@ function fetchAndReplace(url, selector) {
 		}
 	}
 
-	$('video').forEach(function (video) {
-		video.preload = 'none';
-		video.autoplay = false;
-		video.src = video.dataset.src;
-	});
+	$('video')
+		.forEach(function (video) {
+			video.preload = 'none';
+			video.autoplay = false;
+			video.src = video.dataset.src;
+		});
 
 })();

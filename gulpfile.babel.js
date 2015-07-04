@@ -3,7 +3,6 @@ import gulp from 'gulp';
 import gulpLoadPlugins from 'gulp-load-plugins';
 import browserSync from 'browser-sync';
 import del from 'del';
-import {stream as wiredep} from 'wiredep';
 import {mkdirSync, statSync, readdirSync, createWriteStream} from 'fs';
 import browserify from 'browserify';
 import babelify from 'babelify';
@@ -235,7 +234,7 @@ gulp.task('build', ['jekyll'], () => {
 			if (e.task === 'build-post') r();
 		});
 	});
-})
+});
 
 gulp.task('default', ['clean'], () => {
 	gulp.start('build');

@@ -120,7 +120,7 @@ gulp.task('lint:test', lint('test/spec/**/*.js', testLintOptions));
 gulp.task('html', ['styles'], () => {
 	const assets = $.useref.assets({searchPath: ['.tmp', 'app', '.']});
 
-	return gulp.src('dist/*.html')
+	return gulp.src('dist/**/*.html')
 		.pipe(assets)
 		.pipe($.if('*.css', $.minifyCss({compatibility: '*'})))
 		.pipe(assets.restore())

@@ -8,7 +8,7 @@ author: Ada Rose Edwards
 [[Glitch Bunny]](https://1am.club/~ada/cardboard/) is an audio visualisation. It uses input from the microphone via webaudio and maps it onto a bunny.
 
 <p>[WebM video size 6.5mb click to load.]</p>
-<video class="gallery-item" data-src="/post_resources/BunnyBunny.webm" poster="/post_resources/BunnyBunnyPreview.jpeg" loop="true" controls="controls">
+<video class="gallery-item" data-src="/post_resources/BunnyBunny.webm" poster="/images/post_resources/BunnyBunnyPreview.jpeg" loop="true" controls="controls">
 	Sorry it appears video is not supported in your browser.
 </video>
 
@@ -74,7 +74,7 @@ function convertCartesianToSpherical(cartesian) {
 `scaleSphere` maps different frequencies to different points on the sphere. Higher frequencies have more spikes and lower frequencies have fewer the video below shows what happens if we turn on only one frequency bin at a time:
 
 <p>[WebM video size 1.6mb click to load.]</p>
-<video class="gallery-item" data-src="/post_resources/bunny_debug.webm" poster="/post_resources/bunny_debugPreview.jpeg" loop="true" controls="controls">
+<video class="gallery-item" data-src="/post_resources/bunny_debug.webm" poster="/images/post_resources/bunny_debugPreview.jpeg" loop="true" controls="controls">
 	Sorry it appears video is not supported in your browser.
 </video>
 

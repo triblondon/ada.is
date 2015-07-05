@@ -71,14 +71,12 @@ function isLocal(url) {
 
 var resources = [
 	'/favicon.ico',
-	'/img/pattern.svg',
-	'/css/main.css',
-	'/js/script.js',
+	'/images/pattern.svg',
+	'/styles/main.css',
+	'/scripts/script.js',
 	'https://fonts.googleapis.com/css?family=Open+Sans:300italic,400,300,600,800',
 	'https://s.gravatar.com/avatar/e137ba0321f12ecb5340680815b42c26?s=400',
-
-	'/',
-	'/index.html'
+	'/'
 ];
 
 // Send a signal to all connected windows.

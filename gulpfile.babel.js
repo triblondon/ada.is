@@ -6,9 +6,7 @@ import del from 'del';
 import {mkdirSync, statSync, readdirSync, createWriteStream} from 'fs';
 import browserify from 'browserify';
 import babelify from 'babelify';
-
-// Allow the requiring of grunt jekyll
-require('gulp-grunt')(gulp);
+import exit from 'gulp-exit';
 
 const $ = gulpLoadPlugins();
 const reload = browserSync.reload;
@@ -29,11 +27,14 @@ gulp.task('styles', () => {
 });
 
 gulp.task('jekyll', () => {
+
+	// Allow the requiring of grunt jekyll
+	require('gulp-grunt')(gulp);
 	gulp.start('grunt-jekyll');
 
 	return new Promise(r => {
 		gulp.on('task_stop', function(e) {
-			if (e.task === 'grunt-jekyll') r();
+			if (e.task === 'grunt-jekyll') r(exit());
 		});
 	});
 });
@@ -223,17 +224,11 @@ gulp.task('deploy', ['build'], function () {
 });
 
 gulp.task('build-post', ['copy-scripts', 'html', 'images', 'fonts'], () => {
-	return gulp.src('dist/**/*').pipe($.size({title: 'build', gzip: true}));
+	return gulp.src('dist/**/*').pipe($.size({title: 'build', gzip: true})).pipe(exit());
 });
 
 gulp.task('build', ['jekyll'], () => {
 	gulp.start('build-post');
-
-	return new Promise(r => {
-		gulp.on('task_stop', function(e) {
-			if (e.task === 'build-post') r();
-		});
-	});
 });
 
 gulp.task('default', ['clean'], () => {

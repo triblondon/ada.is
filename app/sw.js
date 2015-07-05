@@ -137,6 +137,13 @@ self.addEventListener('message', function(event) {
 });
 
 self.addEventListener('fetch', function(event) {
+
+	// Don't try caching the webms
+	if ((new URL(event.request.url)).pathname.slice(-4).toLowerCase() === 'webm') {
+		return fetch(event.request);
+	}
+
+
 	var resp = caches.match(event.request)
 		.then(function(r) {
 			var age = Date.now() - (new Date(r.headers.get('Date')).getTime());

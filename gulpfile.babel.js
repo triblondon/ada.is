@@ -156,7 +156,7 @@ gulp.task('copy-scripts', ['browserify'], () => {
 		'.tmp/**/*.js', // everything which has been browserified
 		'app/*.js' // service worker
 	])
-	.pipe($.uglify())
+	// .pipe($.uglify())
 	.pipe(gulp.dest('dist'));
 });
 

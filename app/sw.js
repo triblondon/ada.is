@@ -66,7 +66,7 @@ if (!Cache.prototype.addAll) {
 }
 
 function isLocal(url) {
-	return (new URL(url).host === location.host);
+	return (new URL(new Request(url).url).host === location.host);
 }
 
 var resources = [

@@ -27,7 +27,7 @@ body.special, body.special-index {
 			}
 
 			em {
-				padding: 0.1em 1em;
+				padding: 0.4em 1em;
 			}
 
 			&:nth-of-type(odd) {
@@ -39,6 +39,29 @@ body.special, body.special-index {
 			}
 		}
 
+		.notebene {
+			background: $ada-pink;
+			padding: 1.5em 0.5em 0.5em 2em;
+			box-shadow: 0.5em 0.5em 0 $shadow;
+			margin: 0.5em 1em 1em 0.5em;
+			position: relative;
+
+			&:before {
+				font-size: 140%;
+				font-family: serif;
+				font-style: italic;
+				position: absolute;
+				color: rgb(76, 76, 76);
+				display: block;
+				opacity: 0.3;
+				padding: 0.1em;
+				margin: -0.2em 0;
+				content: "NB:";
+				left: 0;
+				top: 0;
+			}
+		}
+
 		blockquote {
 			clear: both;
 			box-shadow: 0.5em 0.5em 0 $shadow;
@@ -46,10 +69,10 @@ body.special, body.special-index {
 			padding: 0.5em 2em;
 			font-size: 140%;
 			font-family: serif;
+			font-style: italic;
 			margin: 1em 0;
 			color: rgb(76, 76, 76);
 			position: relative;
-			font-style: italic;
 
 			&:before, &:after {
 				font-size: 3em;

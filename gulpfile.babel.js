@@ -7,6 +7,7 @@ import {mkdirSync, statSync, readdirSync, createWriteStream} from 'fs';
 import browserify from 'browserify';
 import babelify from 'babelify';
 import exit from 'gulp-exit';
+import run from 'gulp-run';
 
 const $ = gulpLoadPlugins();
 const reload = browserSync.reload;
@@ -28,15 +29,8 @@ gulp.task('styles', () => {
 
 gulp.task('jekyll', () => {
 
-	// Allow the requiring of grunt jekyll
-	require('gulp-grunt')(gulp);
-	gulp.start('grunt-jekyll');
-
-	return new Promise(r => {
-		gulp.on('task_stop', function(e) {
-			if (e.task === 'grunt-jekyll') r(exit());
-		});
-	});
+	return run('grunt jekyll')
+		.exec();
 });
 
 gulp.task('browserify', function () {

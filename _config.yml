@@ -21,8 +21,6 @@ future: true
 show_drafts: true
 
 permalink: pretty
-paginate: 50
-paginate_path: 'page:num'
 
 # Markdown library
 markdown: redcarpet

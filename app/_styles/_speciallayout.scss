@@ -22,12 +22,52 @@ body.special, body.special-index {
 			display: inline;
 			max-width: 100%;
 
+			img {
+				display: inline-block;
+			}
+
+			em {
+				padding 0.1em 1em;
+			}
+
 			&:nth-of-type(odd) {
 				float:left;
 			}
 
 			&:nth-of-type(even) {
 				float:right;
+			}
+		}
+
+		blockquote {
+			clear: both;
+			box-shadow: 0.5em 0.5em 0 $shadow;
+			background: $ada-pink;
+			padding: 0.5em 2em;
+			font-size: 140%;
+			font-family: serif;
+			margin: 1em 0;
+			color: rgb(76, 76, 76);
+			position: relative;
+			font-style: italic;
+
+			&:before, &:after {
+				font-size: 3em;
+				position: absolute;
+				display: block;
+				opacity: 0.3;
+				padding: 0.1em;
+				margin: -0.2em 0;
+			}
+			&:before {
+				content: "\201c";
+				left: 0;
+				top: 0;
+			}
+			&:after {
+				content: "\201d";
+				right: 0;
+				bottom: 0;
 			}
 		}
 

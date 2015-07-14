@@ -23,67 +23,9 @@ const myObject = {};
 
 ## What is const, how is it different from var?
 
-The `const` keyword decalares an constant variable like it's mutable counterpart `let` it is block scoped (e.g. will have its scope constrained within a block statement, `if`, `for`, `while` etc). This prevents variables being [hoisted](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/var#var_hoisting) outside of their block statement.
+The `const` keyword decalares an constant variable like it's mutable counterpart `let` it is block scoped (e.g. will have its scope constrained within a block statement, `if`, `for`, `while` etc). This prevents variables being [hoisted](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/var#var_hoisting) outside of their block statement. <a href="#block-scoping">Block scoping is covered at the bottom of this article</a>.
 
-### Block scoping examples:
-
-{% highlight js %}
-if (true) {
-const myVar = 1;
-const myFunc = function (a) { console.log(a) };
-myFunc(myVar);
-}
-myFunc(2);
-// 1
-// ReferenceError: myFunc is not defined
-myVar;
-// ReferenceError: myVar is not defined
-{% endhighlight %}
-
-Compared to the ES5 version which by just declaring functions and vars leaves the scope (and memory) cluttered with functions we are no longer interested in. The hoisted variables have the value `undefined` before they are initialized and linger after they are used.
-
-If you wanted to scope a var in ES5 you would use an Immediately-Invoked Function Expression (IIFE) and to make the scope more clear you should declare your vars and functions at the top of their scope rather than as soon as they are required. Const, by limiting the scope the variables can be declared much closer to where they are used.
-
-{% highlight js %}
-
-myVar;
-// undefined
-// note: undefined not reference error since my var has been hoisted from the if block
-
-myFunc();
-// TypeError: undefined is not a function
-// note: myFunc has been hoisted giving us a not very useful error here
-
-if (true) {
-  var myVar = 1;
-  function myFunc(a) { console.log(a) };
-  myFunc(myVar);
-  // 1
-}
-
-myVar;
-// 1
-// this variable is still hanging around even though we should be done with it
-
-myFunc(2);
-// 2
-// this function is also still around even though we should be done with it.
-
-// To restrict scope in ES5 one would use an IIFE
-// (Immediately-Invoked Function Expression)
-
-(function () {
-	var scopedVar = 2;
-	scopedVar;
-	// 2
-})();
-
-scopedVar;
-// ReferenceError: scopedVar is not defined
-
-{% endhighlight %}
-
-### The Immutability of Const,
+## The Immutability of Const,
 
 The property of const that differentiates it from `let` is that it is constant. What that means is that value assigned to it will not change if it is updated.
 
@@ -99,10 +41,9 @@ myVar
 Note that it does not throw an error, it just leaves the variable unchanged.
 This could potentially lead to a hard to identify bug so watch out.
 
-#### But what about with Arrays and other Objects as shown earlier?
+#### But what about with Arrays and other Objects?
 
-This raises an interesting point.
-A well known subtlety of JavaScript is that, much like other c based languages, when a new `Array`, `Object`, `Function` or another Object is initiated what is returned is not the value itself but a reference to the new array, object or function which is created.
+A well known subtlety of JavaScript is that, much like other c based languages, when a new `Array`, `Object`, `Function` or another object is initiated what is returned is not the value itself but a reference to what we just created.
 
 So in the case of Arrays it is not the Array itself which cannot change but the reference to the array.
 
@@ -137,7 +78,7 @@ myString
 {% endhighlight %}
 </p>
 
-## What if I do want my object to be immutable?
+## What do I do if I want my object to be immutable?
 
 The two new ES6 Object properties Seal and Freeze are for this purpose.
 
@@ -163,4 +104,66 @@ myObject.b.d = 2; // child object is not frozen
 
 myObject
 // {a: {b: 1, d: 2}, c: 2}
+{% endhighlight %}
+
+<h2 id="block-scoping">Block scoping of let and const</h2>
+
+The two new variable declarations introduced in ES6, `let` and `const`, are both block scoped. Meaning that they only have scope in their block (between {}). This is great because it allows variables to be declared closer to where they are used. Also allow for more explicit code as one can infer how a variable will.
+
+{% highlight js %}
+if (true) {
+  const myVar = 1;
+  const myFunc = function (a) { console.log(a) };
+  myFunc(myVar);
+  // 1
+}
+myFunc(2);
+// ReferenceError: myFunc is not defined
+
+myVar;
+// ReferenceError: myVar is not defined
+{% endhighlight %}
+
+Compared to the ES5 version which by just declaring functions and vars leaves the scope (and memory) cluttered with functions we are no longer interested in. The hoisted variables have the value `undefined` before they are initialized and linger after they are used.
+
+If you wanted to scope a var in ES5 you would use an Immediately-Invoked Function Expression (IIFE) and to make the scope more clear you should declare your vars and functions at the top of their scope rather than as soon as they are required. Const, by limiting the scope the variables can be declared much closer to where they are used.
+
+{% highlight js %}
+
+myVar;
+// undefined
+// note: undefined not reference error because
+// myVar has been hoisted from the if block
+
+myFunc();
+// TypeError: undefined is not a function
+// note: myFunc has been hoisted giving us a not very useful error here
+
+if (true) {
+  var myVar = 1;
+  function myFunc(a) { console.log(a) };
+  myFunc(myVar);
+  // 1
+}
+
+myVar;
+// 1
+// this variable is still hanging around even though we should be done with it
+
+myFunc(2);
+// 2
+// this function is also still around even though we should be done with it.
+
+// To restrict scope in ES5 one would use an IIFE
+// (Immediately-Invoked Function Expression)
+
+(function () {
+	var scopedVar = 2;
+	scopedVar;
+	// 2
+})();
+
+scopedVar;
+// ReferenceError: scopedVar is not defined
+
 {% endhighlight %}
